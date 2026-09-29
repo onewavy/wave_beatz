@@ -1,0 +1,485 @@
+/* =====================================================
+   WAVE BEATZ — LICENSE STORE
+   DARK / PREMIUM / COMPACT
+===================================================== */
+
+:root {
+    --bg: #070707;
+    --panel: #101010;
+    --panel-hover: #151515;
+    --text: #f4f4f4;
+    --muted: #8d8d8d;
+    --line: rgba(255,255,255,.09);
+    --accent: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.licenses-header {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.brand span {
+    font-weight: 400;
+}
+
+.back-link {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: color .2s ease;
+}
+
+.back-link:hover {
+    color: #fff;
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.licenses-page {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px 24px 70px;
+}
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.licenses-intro {
+    max-width: 720px;
+    margin-bottom: 34px;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    color: #777;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.licenses-intro h1 {
+    margin: 0;
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: .9;
+    letter-spacing: -3px;
+    font-weight: 900;
+}
+
+.licenses-intro h1 span {
+    color: #777;
+}
+
+.intro-text {
+    max-width: 600px;
+    margin: 18px 0 0;
+    color: #8b8b8b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =====================================================
+   LICENSE GRID
+===================================================== */
+
+.license-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+/* =====================================================
+   LICENSE CARD
+===================================================== */
+
+.license-card {
+    position: relative;
+    padding: 22px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease;
+}
+
+.license-card:hover {
+    transform: translateY(-4px);
+    background: var(--panel-hover);
+    border-color: rgba(255,255,255,.2);
+}
+
+.license-card.featured {
+    border-color: rgba(255,255,255,.28);
+}
+
+.featured-label {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 5px 8px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 5px;
+    color: #aaa;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+/* =====================================================
+   CARD TOP
+===================================================== */
+
+.license-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.license-label {
+    margin: 0 0 6px;
+    color: #666;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.license-card h2 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: -.5px;
+}
+
+.license-price {
+    white-space: nowrap;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.license-price small {
+    margin-right: 2px;
+    color: #777;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.license-description {
+    min-height: 62px;
+    margin: 18px 0 14px;
+    color: #888;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.license-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.license-card li {
+    padding: 5px 0;
+    color: #aaa;
+    font-size: 11px;
+}
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.license-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 13px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 8px;
+    color: #fff;
+    background: #181818;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.license-button span {
+    font-size: 16px;
+}
+
+.license-button:hover {
+    background: #242424;
+    border-color: rgba(255,255,255,.3);
+    transform: translateX(2px);
+}
+
+/* =====================================================
+   BEAT SELECTOR
+===================================================== */
+
+.beat-selector {
+    margin-top: 65px;
+    padding-top: 35px;
+    border-top: 1px solid var(--line);
+}
+
+.selector-heading {
+    margin-bottom: 20px;
+}
+
+.selector-heading h2 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: -1px;
+}
+
+.selector-heading p:last-child {
+    margin: 8px 0 0;
+    color: #777;
+    font-size: 12px;
+}
+
+/* =====================================================
+   BEAT LIST
+===================================================== */
+
+.beat-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--line);
+}
+
+.beat-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 68px;
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--line);
+    color: #fff;
+    text-decoration: none;
+    transition:
+        background .2s ease,
+        padding-left .2s ease;
+}
+
+.beat-row:hover {
+    background: rgba(255,255,255,.025);
+    padding-left: 14px;
+}
+
+.beat-number {
+    width: 30px;
+    color: #555;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.beat-row-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.beat-row-info strong {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.beat-row-info span {
+    color: #666;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.beat-arrow {
+    color: #777;
+    font-size: 18px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.licenses-footer {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 22px 24px 35px;
+    display: flex;
+    justify-content: space-between;
+    color: #444;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border-top: 1px solid var(--line);
+}
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+.licenses-intro,
+.license-card,
+.beat-selector {
+    animation: licenseFadeUp .55s ease both;
+}
+
+.license-card:nth-child(2) {
+    animation-delay: .08s;
+}
+
+.license-card:nth-child(3) {
+    animation-delay: .16s;
+}
+
+@keyframes licenseFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .licenses-page {
+        padding: 35px 16px 55px;
+    }
+
+    .license-options {
+        grid-template-columns: 1fr;
+    }
+
+    .license-card {
+        padding: 19px;
+    }
+
+    .license-description {
+        min-height: auto;
+    }
+
+    .licenses-intro h1 {
+        font-size: clamp(40px, 14vw, 58px);
+        letter-spacing: -2px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .licenses-header {
+        padding: 18px 15px;
+    }
+
+    .brand {
+        font-size: 15px;
+    }
+
+    .licenses-page {
+        padding-top: 28px;
+    }
+
+    .license-top {
+        align-items: center;
+    }
+
+    .license-price {
+        font-size: 22px;
+    }
+
+    .beat-row {
+        gap: 10px;
+    }
+
+    .beat-number {
+        width: 22px;
+    }
+
+    .licenses-footer {
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 8px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .licenses-intro,
+    .license-card,
+    .beat-selector {
+        animation: none;
+    }
+
+    .license-card,
+    .license-button,
+    .beat-row {
+        transition: none;
+    }
+
+}

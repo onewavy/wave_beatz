@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Beat Licenses — WAVE BEATZ | DJ WAVY
+    </title>
+
+    <meta
+        name="description"
+        content="Choose a WAVE BEATZ license for premium beats by DJ WAVY."
+    >
+
+    <meta
+        name="author"
+        content="DJ WAVY — WAVE BEATZ"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/licenses.css') }}"
+    >
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="licenses-header">
+
+    <a href="/" class="brand">
+        WAVE <span>BEATZ</span>
+    </a>
+
+    <a href="/" class="back-link">
+        ← BACK TO BEATS
+    </a>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="licenses-page">
+
+    <section class="licenses-intro">
+
+        <p class="eyebrow">
+            DJ WAVY / WAVE BEATZ
+        </p>
+
+        {% if selected_beat %}
+
+            <h1>
+                LICENSE<br>
+                <span>{{ selected_beat.title }}</span>
+            </h1>
+
+            <p class="intro-text">
+                Choose the license that fits your release.
+                Your selected beat will be carried into the
+                secure payment process.
+            </p>
+
+        {% else %}
+
+            <h1>
+                CHOOSE YOUR<br>
+                <span>LICENSE.</span>
+            </h1>
+
+            <p class="intro-text">
+                Select a license and choose any beat from the
+                WAVE BEATZ catalogue.
+            </p>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- =================================================
+         LICENSE OPTIONS
+    ================================================== -->
+
+    <section class="license-options">
+
+        <!-- BASIC -->
+
+        <article class="license-card">
+
+            <div class="license-top">
+
+                <div>
+                    <p class="license-label">
+                        BASIC
+                    </p>
+
+                    <h2>
+                        BASIC LEASE
+                    </h2>
+                </div>
+
+                <div class="license-price">
+                    <small>USD</small>
+                    7.89
+                </div>
+
+            </div>
+
+            <p class="license-description">
+                A simple lease option for artists who want
+                to use the beat in their music project.
+            </p>
+
+            <ul>
+                <li>✓ MP3 beat download</li>
+                <li>✓ Commercial use</li>
+                <li>✓ Non-exclusive license</li>
+            </ul>
+
+            {% if selected_beat %}
+
+                <a
+                    href="/beat/{{ selected_beat.id }}#license-basic"
+                    class="license-button"
+                >
+                    CHOOSE BASIC
+                    <span>→</span>
+                </a>
+
+            {% else %}
+
+                <a
+                    href="#beats"
+                    class="license-button"
+                    data-license="basic"
+                >
+                    CHOOSE BASIC
+                    <span>→</span>
+                </a>
+
+            {% endif %}
+
+        </article>
+
+
+        <!-- PREMIUM -->
+
+        <article class="license-card featured">
+
+            <div class="featured-label">
+                PREMIUM OPTION
+            </div>
+
+            <div class="license-top">
+
+                <div>
+                    <p class="license-label">
+                        PREMIUM
+                    </p>
+
+                    <h2>
+                        PREMIUM LEASE
+                    </h2>
+                </div>
+
+                <div class="license-price">
+                    <small>USD</small>
+                    15.40
+                </div>
+
+            </div>
+
+            <p class="license-description">
+                A higher-tier lease for artists who need
+                broader usage rights for their release.
+            </p>
+
+            <ul>
+                <li>✓ MP3 beat download</li>
+                <li>✓ Commercial use</li>
+                <li>✓ Expanded usage rights</li>
+            </ul>
+
+            {% if selected_beat %}
+
+                <a
+                    href="/beat/{{ selected_beat.id }}#license-premium"
+                    class="license-button"
+                >
+                    CHOOSE PREMIUM
+                    <span>→</span>
+                </a>
+
+            {% else %}
+
+                <a
+                    href="#beats"
+                    class="license-button"
+                    data-license="premium"
+                >
+                    CHOOSE PREMIUM
+                    <span>→</span>
+                </a>
+
+            {% endif %}
+
+        </article>
+
+
+        <!-- EXCLUSIVE -->
+
+        <article class="license-card">
+
+            <div class="license-top">
+
+                <div>
+                    <p class="license-label">
+                        EXCLUSIVE
+                    </p>
+
+                    <h2>
+                        EXCLUSIVE
+                    </h2>
+                </div>
+
+                <div class="license-price">
+                    <small>USD</small>
+                    24.99
+                </div>
+
+            </div>
+
+            <p class="license-description">
+                Exclusive licensing for artists who want
+                exclusive control of the beat.
+            </p>
+
+            <ul>
+                <li>✓ MP3 beat download</li>
+                <li>✓ Commercial use</li>
+                <li>✓ Exclusive license</li>
+            </ul>
+
+            {% if selected_beat %}
+
+                <a
+                    href="/beat/{{ selected_beat.id }}#license-exclusive"
+                    class="license-button"
+                >
+                    CHOOSE EXCLUSIVE
+                    <span>→</span>
+                </a>
+
+            {% else %}
+
+                <a
+                    href="#beats"
+                    class="license-button"
+                    data-license="exclusive"
+                >
+                    CHOOSE EXCLUSIVE
+                    <span>→</span>
+                </a>
+
+            {% endif %}
+
+        </article>
+
+    </section>
+
+
+    <!-- =================================================
+         BEAT SELECTOR
+    ================================================== -->
+
+    {% if selected_beat and selected_license %}
+
+    <section class="selected-license-action">
+
+        <p class="eyebrow">SELECTED LICENSE</p>
+
+        <h2>
+            {{ selected_license|upper }} LICENSE READY
+        </h2>
+
+        <p>
+            Continue with this license for
+            <strong>{{ selected_beat.title }}</strong>.
+        </p>
+
+        <a
+            href="/beat/{{ selected_beat.id }}#license-{{ selected_license }}"
+            class="license-button"
+        >
+            CONTINUE TO PAYMENT
+            <span>→</span>
+        </a>
+
+    </section>
+
+    {% endif %}
+
+
+    {% if not selected_beat %}
+
+    <section
+        class="beat-selector"
+        id="beats"
+    >
+
+        <div class="selector-heading">
+
+            <p class="eyebrow">
+                WAVE BEATZ CATALOGUE
+            </p>
+
+            <h2>
+                SELECT A BEAT
+            </h2>
+
+            <p>
+                Choose the beat you want to license.
+            </p>
+
+        </div>
+
+
+        <div class="beat-list">
+
+            {% for beat in beats %}
+
+            <a
+                href="/licenses?beat_id={{ beat.id }}{% if selected_license %}&license={{ selected_license }}{% endif %}"
+                class="beat-row"
+            >
+
+                <div class="beat-number">
+                    {{ "%02d"|format(loop.index) }}
+                </div>
+
+                <div class="beat-row-info">
+
+                    <strong>
+                        {{ beat.title }}
+                    </strong>
+
+                    <span>
+                        {{ beat.genre|default("INSTRUMENTAL") }}
+
+                        {% if beat.bpm %}
+                            • {{ beat.bpm }} BPM
+                        {% endif %}
+                    </span>
+
+                </div>
+
+                <div class="beat-arrow">
+                    →
+                </div>
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="licenses-footer">
+
+    <span>
+        WAVE BEATZ
+    </span>
+
+    <span>
+        DJ WAVY
+    </span>
+
+    <span>
+        PREMIUM BEATS
+    </span>
+
+</footer>
+
+
+<!-- =====================================================
+     GENERAL LICENSE SELECTION
+====================================================== -->
+
+<script>
+
+document.querySelectorAll("[data-license]").forEach(function(button) {
+
+    button.addEventListener("click", function(event) {
+
+        event.preventDefault();
+
+        const license = this.dataset.license;
+
+        const beatSection =
+            document.getElementById("beats");
+
+        if (beatSection) {
+
+            beatSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+        document.querySelectorAll(".beat-row").forEach(function(row) {
+
+            row.dataset.selectedLicense = license;
+
+            const baseUrl = row.dataset.baseUrl || row.href;
+
+            const url =
+                new URL(baseUrl, window.location.origin);
+
+            url.searchParams.set(
+                "license",
+                license
+            );
+
+            row.href = url.toString();
+
+        });
+
+    });
+
+});
+
+
+document.querySelectorAll(".beat-row").forEach(function(row) {
+
+    row.dataset.baseUrl = row.href;
+
+    row.addEventListener("click", function(event) {
+
+        const license =
+            this.dataset.selectedLicense;
+
+        if (license) {
+
+            event.preventDefault();
+
+            const url =
+                new URL(this.href, window.location.origin);
+
+            url.searchParams.set(
+                "license",
+                license
+            );
+
+            window.location.href =
+                url.toString();
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

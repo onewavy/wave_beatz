@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% if current_genre %}
+            {{ current_genre }} Beats — WAVE BEATZ | DJ WAVY
+        {% else %}
+            WAVE BEATZ — Premium Beats by DJ WAVY
+        {% endif %}
+    </title>
+
+    <meta
+        name="description"
+        content="{% if current_genre %}Listen to premium {{ current_genre }} beats and instrumentals by DJ WAVY on WAVE BEATZ. Explore beats for artists, licensing and downloads.{% else %}WAVE BEATZ by DJ WAVY — premium hip-hop, trap, afrobeat, dancehall and R&B beats for artists. Listen, license and download professional instrumentals.{% endif %}"
+    >
+
+    <meta
+        name="keywords"
+        content="{% if current_genre %}{{ current_genre }} beats, {{ current_genre }} instrumentals, DJ WAVY, WAVE BEATZ, {{ current_genre }} beat licensing{% else %}DJ WAVY, WAVE BEATZ, hip hop beats, trap beats, afrobeat beats, dancehall beats, R&B beats, instrumental beats, beat licensing{% endif %}"
+    >
+
+    <meta
+        name="author"
+        content="DJ WAVY — WAVE BEATZ"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow, max-image-preview:large"
+    >
+
+    <link
+        rel="canonical"
+        href="{{ site_url }}{{ request.path }}"
+    >
+
+    <!-- Open Graph -->
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:site_name"
+        content="WAVE BEATZ"
+    >
+
+    <meta
+        property="og:title"
+        content="{% if current_genre %}{{ current_genre }} Beats — WAVE BEATZ | DJ WAVY{% else %}WAVE BEATZ — Premium Beats by DJ WAVY{% endif %}"
+    >
+
+    <meta
+        property="og:description"
+        content="{% if current_genre %}Explore {{ current_genre }} beats and instrumentals by DJ WAVY on WAVE BEATZ.{% else %}Premium beats and instrumentals by DJ WAVY. Listen, license and download on WAVE BEATZ.{% endif %}"
+    >
+
+    <meta
+        property="og:url"
+        content="{{ site_url }}{{ request.path }}"
+    >
+
+    <!-- Twitter / X -->
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="{% if current_genre %}{{ current_genre }} Beats — WAVE BEATZ | DJ WAVY{% else %}WAVE BEATZ — Premium Beats by DJ WAVY{% endif %}"
+    >
+
+    <meta
+        name="twitter:description"
+        content="{% if current_genre %}Explore {{ current_genre }} beats and instrumentals by DJ WAVY.{% else %}Premium beats and instrumentals by DJ WAVY.{% endif %}"
+    >
+
+    <!-- Website structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "WAVE BEATZ",
+        "alternateName": "WAVE BEATZ by DJ WAVY",
+        "description": {% if current_genre %}{{ current_genre|tojson }} + " beats and instrumentals by DJ WAVY."{% else %}"Premium beats, instrumentals and music for artists by DJ WAVY."{% endif %},
+        "url": {{ (site_url ~ request.path)|tojson }},
+        "publisher": {
+            "@type": "Person",
+            "name": "DJ WAVY"
+        }
+    }
+    </script>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for("static", filename="css/style.css") }}"
+    >
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <a href="/" class="logo">
+            WAVE <span>BEATZ</span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            onclick="toggleMenu()"
+            aria-label="Toggle navigation"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="main-nav" id="mainNav">
+
+            <a href="/" class="nav-link">
+                HOME
+            </a>
+
+            <a href="#catalogue" class="nav-link">
+                BEATS
+            </a>
+
+            <a href="#about" class="nav-link">
+                ABOUT
+            </a>
+
+            <a href="#contact" class="nav-link">
+                CONTACT
+            </a>
+
+            {% if session.get("user_id") %}
+            <a href="{{ url_for('account') }}" class="nav-link account-link">
+                MY ACCOUNT
+            </a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="nav-link account-link">
+                LOGIN
+            </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<header class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <p class="hero-eyebrow">
+            DJ WAVY PRESENTS
+        </p>
+
+        <h1>
+            FIND YOUR
+            <span>SOUND.</span>
+        </h1>
+
+        <p class="hero-description">
+            Premium instrumentals crafted for artists,
+            creators and the next wave.
+        </p>
+
+        <a href="#catalogue" class="hero-button">
+            EXPLORE BEATS
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     HOMEPAGE SECTIONS
+========================================================= -->
+
+{% if not current_genre %}
+
+<!-- =========================================================
+     FEATURED
+========================================================= -->
+
+<section class="stage5-section featured-section">
+
+    <div class="stage5-header">
+
+        <div>
+
+            <p class="stage5-label">
+                WAVE BEATZ SPOTLIGHT
+            </p>
+
+            <h2 class="stage5-heading">
+                THE WAVY SPOTLIGHT.
+            </h2>
+
+        </div>
+
+        <span class="stage5-count">
+            {{ featured_beats|length }} FEATURED
+        </span>
+
+    </div>
+
+
+    {% if featured_beats %}
+
+    <div class="stage5-grid">
+
+        {% for beat in featured_beats %}
+
+        <article
+            class="beat-card stage5-card"
+            data-name="{{ beat.title|lower }}"
+            data-genre="{{ beat.genre|default('')|lower }}"
+            data-bpm="{{ beat.bpm|default('') }}"
+            data-key="{{ beat.music_key|default('')|lower }}"
+            data-mood="{{ beat.mood|default('')|lower }}"
+            data-tags="{{ beat.tags|default('')|lower }}"
+            data-producer="{{ beat.producer|default('')|lower }}"
+            data-duration="{{ beat.duration|default(0) }}"
+        >
+
+            <div class="beat-cover">
+
+                {% if beat.artwork_file %}
+
+                <img
+                    src="{{ url_for('static', filename='images/' + beat.artwork_file) }}"
+                    alt="{{ beat.title }}"
+                >
+
+                {% else %}
+
+                <div class="cover-placeholder">
+                    <span>WAVE</span>
+                    <strong>BEATZ</strong>
+                </div>
+
+                {% endif %}
+
+
+                <button
+                    class="play-button"
+                    onclick="playBeat('{{ beat.title|e }}', '{{ url_for('static', filename=beat.audio_file) }}')"
+                    aria-label="Play {{ beat.title }}"
+                >
+                    ▶
+                </button>
+
+
+                {% if beat.featured %}
+
+                <span class="beat-badge featured-badge">
+                    FEATURED
+                </span>
+
+                {% endif %}
+
+
+                {% if beat.dj_wavy_pick %}
+
+                <span class="beat-badge pick-badge">
+                    DJ WAVY PICK
+                </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="beat-info">
+
+                <a
+                    href="/beat/{{ beat.id }}"
+                    class="beat-detail-link"
+                >
+
+                    <h3>
+                        {{ beat.title }}
+                    </h3>
+
+                    <p class="beat-meta-line">
+
+                        <span>
+                            {{ beat.genre }}
+                        </span>
+
+                        <span class="meta-dot">•</span>
+
+                        <span>
+                            {{ beat.bpm }} BPM
+                        </span>
+
+                        {% if beat.music_key %}
+
+                        <span class="meta-dot">•</span>
+
+                        <span>
+                            {{ beat.music_key }}
+                        </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </a>
+
+
+                <div class="beat-extra-meta">
+
+                    {% if beat.mood %}
+                    <span>{{ beat.mood }}</span>
+                    {% endif %}
+
+                    {% if beat.duration %}
+                    <span>
+                        {{ (beat.duration // 60) }}:{{
+                            '%02d'|format(beat.duration % 60)
+                        }}
+                    </span>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            {% if session.get("user_id") %}
+            <a
+                href="/licenses?beat_id={{ beat.id }}"
+                class="download-button homepage-download-button"
+                onclick="event.stopPropagation();"
+                aria-label="Download {{ beat.title }}"
+            >
+                DOWNLOAD
+                <span>↓</span>
+            </a>
+            {% else %}
+            <a
+                href="{{ url_for('login', next='/licenses?beat_id=' ~ beat.id) }}"
+                class="download-button homepage-download-button"
+                onclick="event.stopPropagation();"
+                aria-label="Login to download {{ beat.title }}"
+            >
+                DOWNLOAD
+                <span>↓</span>
+            </a>
+            {% endif %}
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="stage5-empty">
+        No featured beats yet.
+    </div>
+
+    {% endif %}
+
+</section>
+
+
+<!-- =========================================================
+     NEW DROPS
+========================================================= -->
+
+<section class="stage5-section new-drops-section">
+
+    <div class="stage5-header">
+
+        <div>
+
+            <p class="stage5-label">
+                FRESH FROM THE STUDIO
+            </p>
+
+            <h2 class="stage5-heading">
+                FRESH FROM THE STUDIO.
+            </h2>
+
+        </div>
+
+        <span class="stage5-count">
+            {{ new_drops|length }} LATEST
+        </span>
+
+    </div>
+
+
+    {% if new_drops %}
+
+    <div class="stage5-grid">
+
+        {% for beat in new_drops %}
+
+        <article
+            class="beat-card stage5-card"
+            data-name="{{ beat.title|lower }}"
+            data-genre="{{ beat.genre|default('')|lower }}"
+            data-bpm="{{ beat.bpm|default('') }}"
+            data-key="{{ beat.music_key|default('')|lower }}"
+            data-mood="{{ beat.mood|default('')|lower }}"
+            data-tags="{{ beat.tags|default('')|lower }}"
+            data-producer="{{ beat.producer|default('')|lower }}"
+            data-duration="{{ beat.duration|default(0) }}"
+        >
+
+            <div class="beat-cover">
+
+                {% if beat.artwork_file %}
+
+                <img
+                    src="{{ url_for('static', filename='images/' + beat.artwork_file) }}"
+                    alt="{{ beat.title }}"
+                >
+
+                {% else %}
+
+                <div class="cover-placeholder">
+                    <span>WAVE</span>
+                    <strong>BEATZ</strong>
+                </div>
+
+                {% endif %}
+
+
+                <button
+                    class="play-button"
+                    onclick="playBeat('{{ beat.title|e }}', '{{ url_for('static', filename=beat.audio_file) }}')"
+                    aria-label="Play {{ beat.title }}"
+                >
+                    ▶
+                </button>
+
+
+                {% if beat.featured %}
+
+                <span class="beat-badge featured-badge">
+                    FEATURED
+                </span>
+
+                {% endif %}
+
+
+                {% if beat.dj_wavy_pick %}
+
+                <span class="beat-badge pick-badge">
+                    DJ WAVY PICK
+                </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="beat-info">
+
+                <a
+                    href="/beat/{{ beat.id }}"
+                    class="beat-detail-link"
+                >
+
+                    <h3>
+                        {{ beat.title }}
+                    </h3>
+
+                    <p class="beat-meta-line">
+
+                        <span>
+                            {{ beat.genre }}
+                        </span>
+
+                        <span class="meta-dot">•</span>
+
+                        <span>
+                            {{ beat.bpm }} BPM
+                        </span>
+
+                        {% if beat.music_key %}
+
+                        <span class="meta-dot">•</span>
+
+                        <span>
+                            {{ beat.music_key }}
+                        </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </a>
+
+
+                <div class="beat-extra-meta">
+
+                    {% if beat.mood %}
+                    <span>{{ beat.mood }}</span>
+                    {% endif %}
+
+                    {% if beat.duration %}
+                    <span>
+                        {{ (beat.duration // 60) }}:{{
+                            '%02d'|format(beat.duration % 60)
+                        }}
+                    </span>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            {% if session.get("user_id") %}
+            <a
+                href="/licenses?beat_id={{ beat.id }}"
+                class="download-button homepage-download-button"
+                onclick="event.stopPropagation();"
+                aria-label="Download {{ beat.title }}"
+            >
+                DOWNLOAD
+                <span>↓</span>
+            </a>
+            {% else %}
+            <a
+                href="{{ url_for('login', next='/licenses?beat_id=' ~ beat.id) }}"
+                class="download-button homepage-download-button"
+                onclick="event.stopPropagation();"
+                aria-label="Login to download {{ beat.title }}"
+            >
+                DOWNLOAD
+                <span>↓</span>
+            </a>
+            {% endif %}
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="stage5-empty">
+        No new drops yet.
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     MAIN CATALOGUE
+========================================================= -->
+
+<main
+    class="beats-section"
+    id="catalogue"
+>
+
+    <div class="catalogue-inner">
+
+        <div class="catalogue-header">
+
+            <div>
+
+                <p class="catalogue-label">
+                    {% if current_genre %}
+                        GENRE CATALOGUE
+                    {% else %}
+                        THE CATALOGUE
+                    {% endif %}
+                </p>
+
+                <h2 class="catalogue-heading">
+
+                    {% if current_genre %}
+
+                        {{ current_genre }} BEATS.
+
+                    {% else %}
+
+                        FIND YOUR SOUND.
+
+                    {% endif %}
+
+                </h2>
+
+                <p class="catalogue-count">
+                    {{ beats|length }} BEATS AVAILABLE
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="catalogue-search">
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search beats, genre, mood, key, producer..."
+                    oninput="searchBeats()"
+                    autocomplete="off"
+                >
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CATEGORIES
+        ================================================== -->
+
+        <div class="categories">
+
+            <a
+                href="/"
+                class="category-link {% if not current_genre %}active{% endif %}"
+            >
+                ALL
+            </a>
+
+            <a
+                href="/trap"
+                class="category-link {% if current_genre|default('')|lower == 'trap' %}active{% endif %}"
+            >
+                TRAP
+            </a>
+
+            <a
+                href="/hip-hop"
+                class="category-link {% if current_genre|default('')|lower == 'hip-hop' %}active{% endif %}"
+            >
+                HIP-HOP
+            </a>
+
+            <a
+                href="/afrobeat"
+                class="category-link {% if current_genre|default('')|lower == 'afrobeat' %}active{% endif %}"
+            >
+                AFROBEAT
+            </a>
+
+            <a
+                href="/rnb"
+                class="category-link {% if current_genre|default('')|lower == 'r&b' %}active{% endif %}"
+            >
+                R&B
+            </a>
+
+            <a
+                href="/dancehall"
+                class="category-link {% if current_genre|default('')|lower == 'dancehall' %}active{% endif %}"
+            >
+                DANCEHALL
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             CATALOGUE TOOLS
+        ================================================== -->
+
+        <div class="catalogue-tools">
+
+            <div class="catalogue-results-label">
+                BEAT SORT
+            </div>
+
+            <select
+                id="sortSelect"
+                class="sort-select"
+                onchange="sortBeats()"
+            >
+
+                <option value="newest">
+                    Newest
+                </option>
+
+                <option value="title">
+                    Title A–Z
+                </option>
+
+                <option value="bpm-low">
+                    BPM Low → High
+                </option>
+
+                <option value="bpm-high">
+                    BPM High → Low
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- =================================================
+             BEAT GRID
+        ================================================== -->
+
+        <div
+            class="beat-grid"
+            id="beatGrid"
+        >
+
+            {% for beat in beats %}
+
+            <article
+                class="beat-card"
+                data-name="{{ beat.title|default('')|lower }}"
+                data-genre="{{ beat.genre|default('')|lower }}"
+                data-bpm="{{ beat.bpm|default('') }}"
+                data-key="{{ beat.music_key|default('')|lower }}"
+                data-mood="{{ beat.mood|default('')|lower }}"
+                data-tags="{{ beat.tags|default('')|lower }}"
+                data-producer="{{ beat.producer|default('')|lower }}"
+                data-duration="{{ beat.duration|default(0) }}"
+                data-id="{{ beat.id }}"
+            >
+
+                <div class="beat-cover">
+
+                    {% if beat.artwork_file %}
+
+                    <img
+                        src="{{ url_for('static', filename='images/' + beat.artwork_file) }}"
+                        alt="{{ beat.title }}"
+                        loading="lazy"
+                    >
+
+                    {% else %}
+
+                    <div class="cover-placeholder">
+
+                        <span>
+                            WAVE
+                        </span>
+
+                        <strong>
+                            BEATZ
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <button
+                        class="play-button"
+                        onclick="playBeat('{{ beat.title|e }}', '{{ url_for('static', filename=beat.audio_file) }}')"
+                        aria-label="Play {{ beat.title }}"
+                    >
+                        ▶
+                    </button>
+
+
+                    <!-- BADGES -->
+
+                    {% if beat.featured %}
+
+                    <span class="beat-badge featured-badge">
+                        FEATURED
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if beat.dj_wavy_pick %}
+
+                    <span class="beat-badge pick-badge">
+                        DJ WAVY PICK
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if beat.id == 5 %}
+
+                    <span class="beat-badge new-badge">
+                        NEW
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="beat-info">
+
+                    <a
+                        href="/beat/{{ beat.id }}"
+                        class="beat-detail-link"
+                    >
+
+                        <h3>
+                            {{ beat.title }}
+                        </h3>
+
+                        <p class="beat-meta-line">
+
+                            {% if beat.genre %}
+
+                            <span>
+                                {{ beat.genre }}
+                            </span>
+
+                            {% endif %}
+
+
+                            {% if beat.bpm %}
+
+                            <span class="meta-dot">
+                                •
+                            </span>
+
+                            <span>
+                                {{ beat.bpm }} BPM
+                            </span>
+
+                            {% endif %}
+
+
+                            {% if beat.music_key %}
+
+                            <span class="meta-dot">
+                                •
+                            </span>
+
+                            <span>
+                                {{ beat.music_key }}
+                            </span>
+
+                            {% endif %}
+
+                        </p>
+
+                    </a>
+
+
+                    <!-- EXTENDED METADATA -->
+
+                    <div class="beat-extra-meta">
+
+                        {% if beat.mood %}
+
+                        <span class="meta-chip">
+                            {{ beat.mood }}
+                        </span>
+
+                        {% endif %}
+
+
+                        {% if beat.duration %}
+
+                        <span class="meta-chip">
+
+                            {{ beat.duration // 60 }}:{{
+                                '%02d'|format(beat.duration % 60)
+                            }}
+
+                        </span>
+
+                        {% endif %}
+
+
+                        {% if beat.producer %}
+
+                        <span class="meta-chip">
+                            {{ beat.producer }}
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    {% if beat.tags %}
+
+                    <div class="beat-tags">
+
+                        {% for tag in beat.tags.split(',')[:4] %}
+
+                        <span>
+                            {{ tag.strip() }}
+                        </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+            {% if session.get("user_id") %}
+            <a
+                href="/licenses?beat_id={{ beat.id }}"
+                class="download-button homepage-download-button"
+                onclick="event.stopPropagation();"
+                aria-label="Download {{ beat.title }}"
+            >
+                DOWNLOAD
+                <span>↓</span>
+            </a>
+            {% else %}
+            <a
+                href="{{ url_for('login', next='/licenses?beat_id=' ~ beat.id) }}"
+                class="download-button homepage-download-button"
+                onclick="event.stopPropagation();"
+                aria-label="Login to download {{ beat.title }}"
+            >
+                DOWNLOAD
+                <span>↓</span>
+            </a>
+            {% endif %}
+
+            </article>
+
+            {% else %}
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    ♪
+                </div>
+
+                <h3>
+                    NO BEATS YET
+                </h3>
+
+                <p>
+                    The catalogue is waiting for the next wave.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     DJ WAVY PICKS
+========================================================= -->
+
+{% if not current_genre %}
+
+<section class="stage5-section picks-section">
+
+    <div class="stage5-header">
+
+        <div>
+
+            <p class="stage5-label">
+                DJ WAVY SELECTION
+            </p>
+
+            <h2 class="stage5-heading">
+                HANDPICKED BY DJ WAVY.
+            </h2>
+
+        </div>
+
+        <span class="stage5-count">
+            {{ dj_wavy_picks|length }} PICKS
+        </span>
+
+    </div>
+
+
+    {% if dj_wavy_picks %}
+
+    <div class="stage5-grid">
+
+        {% for beat in dj_wavy_picks %}
+
+        <article
+            class="beat-card stage5-card"
+            data-name="{{ beat.title|lower }}"
+            data-genre="{{ beat.genre|default('')|lower }}"
+            data-bpm="{{ beat.bpm|default('') }}"
+            data-key="{{ beat.music_key|default('')|lower }}"
+            data-mood="{{ beat.mood|default('')|lower }}"
+            data-tags="{{ beat.tags|default('')|lower }}"
+            data-producer="{{ beat.producer|default('')|lower }}"
+            data-duration="{{ beat.duration|default(0) }}"
+        >
+
+            <div class="beat-cover">
+
+                {% if beat.artwork_file %}
+
+                <img
+                    src="{{ url_for('static', filename='images/' + beat.artwork_file) }}"
+                    alt="{{ beat.title }}"
+                >
+
+                {% else %}
+
+                <div class="cover-placeholder">
+                    <span>WAVE</span>
+                    <strong>BEATZ</strong>
+                </div>
+
+                {% endif %}
+
+
+                <button
+                    class="play-button"
+                    onclick="playBeat('{{ beat.title|e }}', '{{ url_for('static', filename=beat.audio_file) }}')"
+                    aria-label="Play {{ beat.title }}"
+                >
+                    ▶
+                </button>
+
+
+                <span class="beat-badge pick-badge">
+                    DJ WAVY PICK
+                </span>
+
+            </div>
+
+
+            <div class="beat-info">
+
+                <a
+                    href="/beat/{{ beat.id }}"
+                    class="beat-detail-link"
+                >
+
+                    <h3>
+                        {{ beat.title }}
+                    </h3>
+
+                    <p class="beat-meta-line">
+
+                        <span>
+                            {{ beat.genre }}
+                        </span>
+
+                        <span class="meta-dot">
+                            •
+                        </span>
+
+                        <span>
+                            {{ beat.bpm }} BPM
+                        </span>
+
+                        {% if beat.music_key %}
+
+                        <span class="meta-dot">
+                            •
+                        </span>
+
+                        <span>
+                            {{ beat.music_key }}
+                        </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </a>
+
+
+                <div class="beat-extra-meta">
+
+                    {% if beat.mood %}
+
+                    <span class="meta-chip">
+                        {{ beat.mood }}
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if beat.duration %}
+
+                    <span class="meta-chip">
+                        {{ beat.duration // 60 }}:{{
+                            '%02d'|format(beat.duration % 60)
+                        }}
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            {% if session.get("user_id") %}
+            <a
+                href="/licenses?beat_id={{ beat.id }}"
+                class="download-button homepage-download-button"
+                onclick="event.stopPropagation();"
+                aria-label="Download {{ beat.title }}"
+            >
+                DOWNLOAD
+                <span>↓</span>
+            </a>
+            {% else %}
+            <a
+                href="{{ url_for('login', next='/licenses?beat_id=' ~ beat.id) }}"
+                class="download-button homepage-download-button"
+                onclick="event.stopPropagation();"
+                aria-label="Login to download {{ beat.title }}"
+            >
+                DOWNLOAD
+                <span>↓</span>
+            </a>
+            {% endif %}
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="stage5-empty">
+        No DJ WAVY picks yet.
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endif %}
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+    <div class="about-inner">
+
+        <p class="section-label">
+            ABOUT WAVE BEATZ
+        </p>
+
+        <h2>
+            BUILT FOR
+            <span>THE NEXT WAVE.</span>
+        </h2>
+
+        <p>
+            WAVE BEATZ is the production platform by DJ WAVY,
+            bringing premium instrumentals and original sounds
+            to artists ready to create.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section
+    class="contact-section"
+    id="contact"
+>
+
+    <div class="contact-inner">
+
+        <p class="section-label">
+            CONNECT
+        </p>
+
+        <h2>
+            LET'S MAKE
+            <span>SOMETHING.</span>
+        </h2>
+
+        <p>
+            For beats, collaborations and creative enquiries,
+            connect with DJ WAVY.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MINI PLAYER
+========================================================= -->
+
+<div
+    class="mini-player"
+    id="player"
+>
+
+    <div class="mini-cover">
+
+        <img
+            id="miniCover"
+            src="{{ url_for('static', filename='images/gokuko-fake-love.jpg') }}"
+            alt="Now playing"
+        >
+
+    </div>
+
+
+    <div class="player-info">
+
+        <strong id="playerTitle">
+            Select a beat
+        </strong>
+
+        <span id="playerArtist">
+            DJ WAVY
+        </span>
+
+    </div>
+
+
+    <div class="player-controls">
+
+        <button
+            onclick="previousBeat()"
+            aria-label="Previous beat"
+        >
+            ⏮
+        </button>
+
+        <button
+            class="main-play-button"
+            onclick="togglePlay()"
+            id="playButton"
+            aria-label="Play"
+        >
+            ▶
+        </button>
+
+        <button
+            onclick="nextBeat()"
+            aria-label="Next beat"
+        >
+            ⏭
+        </button>
+
+        <button
+            onclick="stopBeat()"
+            aria-label="Stop"
+        >
+            ■
+        </button>
+
+    </div>
+
+
+    <div class="player-progress">
+
+        <span id="currentTime">
+            0:00
+        </span>
+
+        <input
+            type="range"
+            id="progress"
+            min="0"
+            max="100"
+            value="0"
+            step="0.1"
+            aria-label="Track progress"
+        >
+
+        <span id="duration">
+            0:00
+        </span>
+
+    </div>
+
+
+    <div class="player-volume">
+
+        <span>
+            🔊
+        </span>
+
+        <input
+            type="range"
+            id="volume"
+            min="0"
+            max="1"
+            value="1"
+            step="0.01"
+            aria-label="Volume"
+        >
+
+    </div>
+
+
+    <audio
+        id="audioPlayer"
+        preload="metadata"
+    ></audio>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            WAVE <span>BEATZ</span>
+        </div>
+
+        <p>
+            © {{ now_year|default(2026) }} WAVE BEATZ —
+            DJ WAVY. ALL RIGHTS RESERVED.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+    src="{{ url_for('static', filename='js/script.js') }}"
+></script>
+
+</body>
+</html>

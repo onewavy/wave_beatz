@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account — WAVE BEATZ</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+min-height:100vh;
+font-family:Arial,Helvetica,sans-serif;
+background:radial-gradient(circle at top,#202020 0%,#0b0b0b 45%,#050505 100%);
+color:#fff;
+}
+
+.topbar{
+padding:18px 22px;
+border-bottom:1px solid #242424;
+background:rgba(8,8,8,.96);
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.brand{
+font-weight:900;
+letter-spacing:2px;
+}
+
+.brand span{
+display:block;
+color:#777;
+font-size:10px;
+letter-spacing:2px;
+margin-top:4px;
+}
+
+.top-actions{
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+}
+
+.top-actions a{
+color:#ddd;
+text-decoration:none;
+border:1px solid #333;
+padding:9px 13px;
+border-radius:8px;
+font-size:12px;
+}
+
+.top-actions a:hover{
+background:#1d1d1d;
+color:#fff;
+}
+
+.container{
+width:100%;
+max-width:1050px;
+margin:0 auto;
+padding:35px 18px 70px;
+}
+
+.welcome{
+margin-bottom:25px;
+}
+
+.welcome h1{
+margin:0 0 8px;
+font-size:clamp(28px,6vw,42px);
+}
+
+.welcome p{
+margin:0;
+color:#888;
+line-height:1.6;
+}
+
+.message{
+padding:12px 14px;
+border-radius:10px;
+margin-bottom:20px;
+background:#191919;
+border:1px solid #333;
+color:#ddd;
+font-size:13px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-bottom:20px;
+}
+
+.stat{
+background:linear-gradient(145deg,#171717,#101010);
+border:1px solid #2b2b2b;
+border-radius:14px;
+padding:20px;
+}
+
+.stat-label{
+color:#777;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:1.3px;
+margin-bottom:9px;
+}
+
+.stat-number{
+font-size:28px;
+font-weight:800;
+}
+
+.card{
+background:#141414;
+border:1px solid #2d2d2d;
+border-radius:16px;
+padding:22px;
+margin-bottom:18px;
+}
+
+.card-header{
+margin-bottom:18px;
+}
+
+.card-header h2{
+margin:0;
+font-size:20px;
+}
+
+.card-header p{
+margin:5px 0 0;
+color:#777;
+font-size:12px;
+}
+
+.info-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:0 25px;
+}
+
+.info-row{
+padding:14px 0;
+border-bottom:1px solid #242424;
+}
+
+.label{
+color:#777;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:1px;
+margin-bottom:6px;
+}
+
+.value{
+color:#eee;
+word-break:break-word;
+font-size:14px;
+}
+
+.orders{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.order{
+background:#101010;
+border:1px solid #282828;
+border-radius:13px;
+padding:16px;
+display:grid;
+grid-template-columns:1fr auto;
+gap:15px;
+align-items:center;
+}
+
+.beat-title{
+font-size:17px;
+font-weight:800;
+margin-bottom:8px;
+word-break:break-word;
+}
+
+.order-meta{
+display:flex;
+flex-wrap:wrap;
+gap:7px;
+color:#888;
+font-size:12px;
+}
+
+.tag{
+display:inline-flex;
+border:1px solid #303030;
+border-radius:20px;
+padding:5px 8px;
+background:#171717;
+}
+
+.order-side{
+text-align:right;
+min-width:140px;
+}
+
+.price{
+font-size:16px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.status{
+display:inline-block;
+padding:5px 9px;
+border-radius:20px;
+font-size:10px;
+font-weight:800;
+letter-spacing:.8px;
+text-transform:uppercase;
+border:1px solid #333;
+margin-bottom:9px;
+}
+
+.status-paid{
+background:#152015;
+border-color:#2d4a2d;
+color:#9bd19b;
+}
+
+.status-pending{
+background:#201d15;
+border-color:#4b432d;
+color:#d7c58d;
+}
+
+.status-failed{
+background:#201515;
+border-color:#4b2d2d;
+color:#d79595;
+}
+
+.download{
+display:inline-block;
+text-decoration:none;
+color:#050505;
+background:#f0f0f0;
+padding:9px 13px;
+border-radius:8px;
+font-size:11px;
+font-weight:900;
+}
+
+.download:hover{
+background:#fff;
+}
+
+.no-download{
+color:#666;
+font-size:11px;
+}
+
+.expiry{
+color:#666;
+font-size:10px;
+margin-top:7px;
+line-height:1.4;
+}
+
+.empty{
+text-align:center;
+padding:40px 20px;
+border:1px dashed #303030;
+border-radius:12px;
+background:#101010;
+}
+
+.empty-icon{
+font-size:30px;
+margin-bottom:10px;
+}
+
+.empty h3{
+margin:0 0 7px;
+}
+
+.empty p{
+margin:0 0 18px;
+color:#777;
+font-size:13px;
+line-height:1.6;
+}
+
+.browse{
+display:inline-block;
+color:#050505;
+background:#eee;
+padding:10px 15px;
+border-radius:8px;
+text-decoration:none;
+font-size:12px;
+font-weight:800;
+}
+
+.back{
+display:inline-block;
+margin-top:4px;
+color:#888;
+text-decoration:none;
+font-size:13px;
+}
+
+.back:hover{
+color:#fff;
+}
+
+@media(max-width:700px){
+.topbar{padding:15px}
+.container{padding:25px 13px 55px}
+.stats{grid-template-columns:1fr}
+.info-grid{grid-template-columns:1fr}
+.order{grid-template-columns:1fr}
+.order-side{text-align:left;min-width:0}
+.card{padding:17px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+<div class="brand">
+WAVE BEATZ
+<span>DJ WAVY</span>
+</div>
+
+<div class="top-actions">
+<a href="/">BROWSE BEATS</a>
+<a href="{{ url_for('logout') }}">LOG OUT</a>
+</div>
+
+</header>
+
+<main class="container">
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="message">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<section class="welcome">
+
+<h1>My Account</h1>
+
+<p class="account-welcome">
+Welcome back, <strong>{{ user["name"] }}</strong>.
+</p>
+
+<p class="account-subtitle">
+Manage your WAVE BEATZ account, purchases and downloads.
+</p>
+
+</section>
+
+<section class="stats">
+
+<div class="stat">
+<div class="stat-label">Total Orders</div>
+<div class="stat-number">{{ total_orders }}</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Paid Orders</div>
+<div class="stat-number">{{ paid_orders }}</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Pending Orders</div>
+<div class="stat-number">{{ pending_orders }}</div>
+</div>
+
+</section>
+
+<section class="card">
+
+<div class="card-header">
+<h2>Account Information</h2>
+<p>Your WAVE BEATZ customer details</p>
+</div>
+
+<div class="info-grid">
+
+<div class="info-row">
+<div class="label">Artist / Name</div>
+<div class="value">{{ user["name"] }}</div>
+</div>
+
+<div class="info-row">
+<div class="label">Email</div>
+<div class="value">{{ user["email"] }}</div>
+</div>
+
+<div class="info-row">
+<div class="label">Phone</div>
+<div class="value">{{ user["phone"] or "Not provided" }}</div>
+</div>
+
+<div class="info-row">
+<div class="label">Member Since</div>
+<div class="value">{{ user["created_at"] }}</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="account-actions-card">
+
+<div class="account-actions">
+
+<a href="/" class="account-action primary">
+    <span class="action-icon">♪</span>
+    <span>
+        <strong>BROWSE BEATS</strong>
+        <small>Find your next WAVE BEATZ instrumental</small>
+    </span>
+    <span class="action-arrow">→</span>
+</a>
+
+<a href="/licenses" class="account-action">
+    <span class="action-icon">◈</span>
+    <span>
+        <strong>VIEW LICENSES</strong>
+        <small>Explore available beat licenses</small>
+    </span>
+    <span class="action-arrow">→</span>
+</a>
+
+</div>
+
+</section>
+
+<section class="card purchase-library">
+
+<div class="card-header">
+<h2>My Purchases</h2>
+<p>Your WAVE BEATZ purchase and license library</p>
+</div>
+
+{% if orders %}
+
+<div class="orders">
+
+{% for order in orders %}
+
+{% set payment_status = (order["payment_status"] or "")|upper %}
+
+<article class="order purchase-item">
+
+<div class="purchase-main">
+
+{% if order["beat_artwork"] %}
+<div class="purchase-artwork">
+<img
+    src="{{ url_for('static', filename=order['beat_artwork']) }}"
+    alt="{{ order['beat_title'] or 'WAVE BEATZ Beat' }}"
+>
+</div>
+{% else %}
+<div class="purchase-artwork purchase-artwork-placeholder">
+<span>♪</span>
+</div>
+{% endif %}
+
+<div class="purchase-info">
+
+<div class="beat-title">
+{{ order["beat_title"] or "WAVE BEATZ Beat" }}
+</div>
+
+<div class="order-meta">
+
+{% if order["license_type"] %}
+<span class="tag">
+{{ order["license_type"]|replace("_"," ")|title }}
+</span>
+{% endif %}
+
+{% if order["beat_genre"] %}
+<span class="tag">{{ order["beat_genre"] }}</span>
+{% endif %}
+
+{% if order["beat_bpm"] %}
+<span class="tag">{{ order["beat_bpm"] }} BPM</span>
+{% endif %}
+
+</div>
+
+<div class="purchase-details">
+
+<span>
+ORDER #{{ order["id"] }}
+</span>
+
+{% if order["created_at"] %}
+<span>
+PURCHASED {{ order["created_at"] }}
+</span>
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+<div class="order-side">
+
+<div class="price">
+{{ order["currency"] or "USD" }}
+{{ "%.2f"|format(order["amount"] or 0) }}
+</div>
+
+{% if payment_status == "PAID" %}
+
+<div class="status status-paid">
+PAID
+</div>
+
+{% if order["download_token"] %}
+
+<a
+class="download purchase-download"
+href="{{ url_for('license_download', token=order['download_token']) }}"
+>
+DOWNLOAD
+<span>↓</span>
+</a>
+
+{% if order["download_expires_at"] %}
+<div class="expiry">
+ACCESS UNTIL<br>
+{{ order["download_expires_at"] }}
+</div>
+{% endif %}
+
+{% else %}
+
+<div class="no-download">
+DOWNLOAD PREPARING
+</div>
+
+{% endif %}
+
+{% elif payment_status == "PENDING" %}
+
+<div class="status status-pending">
+PAYMENT PENDING
+</div>
+
+<div class="no-download">
+DOWNLOAD UNAVAILABLE
+</div>
+
+{% elif payment_status in ["FAILED","FAILURE","DECLINED","REJECTED","CANCELLED","CANCELED"] %}
+
+<div class="status status-failed">
+PAYMENT FAILED
+</div>
+
+<div class="no-download">
+NO DOWNLOAD AVAILABLE
+</div>
+
+{% else %}
+
+<div class="status">
+{{ payment_status or "PROCESSING" }}
+</div>
+
+<div class="no-download">
+AWAITING CONFIRMATION
+</div>
+
+{% endif %}
+
+</div>
+
+</article>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty">
+
+<div class="empty-icon">🎵</div>
+
+<h3>No purchases yet</h3>
+
+<p>
+Your purchased beats and licenses will appear here after
+you place an order.
+</p>
+
+<a class="browse" href="/">
+BROWSE BEATS
+</a>
+
+</div>
+
+{% endif %}
+
+</section>
+
+<a class="back" href="/">
+← Back to WAVE BEATZ
+</a>
+
+</main>
+
+</body>
+</html>

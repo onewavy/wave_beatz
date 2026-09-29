@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login — WAVE BEATZ</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #202020 0%, #0b0b0b 45%, #050505 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .account-shell {
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            letter-spacing: 3px;
+            font-size: 28px;
+        }
+
+        .brand p {
+            color: #999;
+            margin: 8px 0 0;
+        }
+
+        .card {
+            background: rgba(20, 20, 20, 0.96);
+            border: 1px solid #2d2d2d;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 16px 0 7px;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background: #0c0c0c;
+            color: white;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #777;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 14px;
+            border: 0;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #050505;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #dddddd;
+        }
+
+        .message {
+            padding: 11px 13px;
+            border-radius: 9px;
+            margin-bottom: 15px;
+            background: #191919;
+            border: 1px solid #333;
+            color: #ddd;
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .footer-link a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="account-shell">
+
+    <div class="brand">
+        <h1>WAVE BEATZ</h1>
+        <p>DJ WAVY</p>
+    </div>
+
+    <div class="card">
+
+        <h2>Welcome back</h2>
+
+        <p class="subtitle">
+            Log in to access your WAVE BEATZ account.
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ request.args.get('next', '') }}"
+            >
+
+            <label for="email">Email</label>
+            <input
+                id="email"
+                type="email"
+                name="email"
+                autocomplete="email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                id="password"
+                type="password"
+                name="password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit">
+                LOG IN
+            </button>
+
+        </form>
+
+        <div class="footer-link">
+            Don't have an account?
+            <a href="{{ url_for('register') }}">Create one</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

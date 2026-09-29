@@ -1,0 +1,4257 @@
+/* ==========================================
+   WAVE BEATZ — DJ WAVY
+   STAGE 5
+   PREMIUM DARK CATALOGUE + FEATURED SECTIONS
+   ========================================== */
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+a,
+input {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font-family: inherit;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 76px;
+
+    background: rgba(8, 8, 8, 0.94);
+
+    border-bottom: 1px solid #1c1c1c;
+
+    backdrop-filter: blur(14px);
+
+    z-index: 1000;
+}
+
+.nav-inner {
+    width: min(1180px, 92%);
+
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 18px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    color: #ffffff;
+}
+
+.logo span {
+    color: #d0a653;
+}
+
+.navbar nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+.navbar nav a {
+    color: #999;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.navbar nav a:hover {
+    color: #d0a653;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   HAMBURGER
+========================================== */
+
+.menu-toggle {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #2b2b2b;
+
+    background: #101010;
+
+    color: #ffffff;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle:active {
+    border-color: #d0a653;
+
+    color: #d0a653;
+
+    background: #151515;
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+    position: relative;
+
+    min-height: 720px;
+
+    padding: 170px 5% 120px;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    right: -190px;
+    top: 80px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(208, 166, 83, 0.13),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+
+    width: min(1180px, 100%);
+
+    margin: auto;
+
+    z-index: 2;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 1px;
+    height: 180px;
+
+    left: 5%;
+
+    bottom: 0;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #d0a653
+    );
+
+    opacity: 0.5;
+}
+
+.hero .eyebrow {
+    color: #d0a653;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    max-width: 850px;
+
+    font-size: clamp(54px, 9vw, 120px);
+
+    line-height: 0.88;
+
+    letter-spacing: -7px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+}
+
+.hero h1 span {
+    color: #d0a653;
+}
+
+.hero-text {
+    max-width: 540px;
+
+    margin-top: 28px;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.hero-button {
+    display: inline-flex;
+
+    margin-top: 34px;
+
+    padding: 14px 24px;
+
+    background: #d0a653;
+
+    color: #080808;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.hero-button:hover {
+    background: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.08);
+}
+
+
+/* ==========================================
+   STAGE 5 FEATURE SECTIONS
+========================================== */
+
+.stage5-section {
+    position: relative;
+
+    padding: 90px 0;
+
+    overflow: hidden;
+
+    border-top: 1px solid #161616;
+}
+
+.stage5-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -180px;
+    right: -160px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(208, 166, 83, 0.08),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.stage5-section .catalogue-inner {
+    position: relative;
+
+    z-index: 2;
+}
+
+.stage5-header {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 28px;
+}
+
+.stage5-heading {
+    min-width: 0;
+}
+
+.stage5-heading .section-label {
+    margin-bottom: 10px;
+}
+
+.stage5-heading h2 {
+    font-size: clamp(34px, 5vw, 62px);
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+
+    text-transform: uppercase;
+}
+
+.stage5-count {
+    flex-shrink: 0;
+
+    padding-bottom: 5px;
+
+    color: #555;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   FEATURED
+========================================== */
+
+.featured-section {
+    padding-top: 110px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #101010 0%,
+            #0b0b0b 100%
+        );
+}
+
+.featured-section .stage5-heading h2 {
+    color: #ffffff;
+}
+
+.featured-section .stage5-heading h2::after {
+    content: " ★";
+
+    color: #d0a653;
+
+    font-size: 0.55em;
+
+    vertical-align: top;
+
+    letter-spacing: 0;
+}
+
+.featured-section .stage5-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.featured-section .beat-card {
+    min-height: 112px;
+
+    border-color: #2b261a;
+
+    background:
+        linear-gradient(
+            100deg,
+            #15130f,
+            #101010
+        );
+
+    box-shadow:
+        inset 3px 0 0 rgba(208, 166, 83, 0.35);
+}
+
+.featured-section .beat-card:hover {
+    border-color: rgba(208, 166, 83, 0.55);
+
+    background:
+        linear-gradient(
+            100deg,
+            #1a1710,
+            #131313
+        );
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        inset 3px 0 0 #d0a653,
+        0 14px 35px rgba(0, 0, 0, 0.35);
+}
+
+.featured-section .cover {
+    width: 92px;
+    height: 92px;
+}
+
+.featured-section .cover::before {
+    width: 70px;
+    height: 70px;
+}
+
+.featured-section .beat-info h3 {
+    font-size: 16px;
+}
+
+.featured-section .play-btn {
+    border-color: #d0a653;
+
+    box-shadow:
+        0 0 20px rgba(208, 166, 83, 0.08);
+}
+
+
+/* ==========================================
+   NEW DROPS
+========================================== */
+
+.new-drops-section {
+    background:
+        linear-gradient(
+            180deg,
+            #0b0b0b 0%,
+            #090909 100%
+        );
+}
+
+.new-drops-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 1px;
+
+    left: 0;
+    bottom: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(208, 166, 83, 0.35),
+            transparent
+        );
+}
+
+.new-drops-section .stage5-heading h2 {
+    color: #ffffff;
+}
+
+.new-drops-section .stage5-heading h2::before {
+    content: "NEW / ";
+
+    color: #d0a653;
+
+    font-size: 0.45em;
+
+    letter-spacing: 2px;
+
+    vertical-align: middle;
+}
+
+.new-drops-section .stage5-grid {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.new-drops-section .beat-card {
+    background: #101010;
+
+    border-left: 2px solid transparent;
+}
+
+.new-drops-section .beat-card:hover {
+    border-left-color: #d0a653;
+
+    transform: translateX(4px);
+}
+
+.new-drops-section .beat-card:first-child {
+    border-color: rgba(208, 166, 83, 0.38);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(208, 166, 83, 0.06),
+            #101010 42%
+        );
+}
+
+
+/* ==========================================
+   DJ WAVY PICKS
+========================================== */
+
+.picks-section {
+    background:
+        linear-gradient(
+            180deg,
+            #0a0a0a 0%,
+            #0e0e0e 100%
+        );
+
+    padding-bottom: 120px;
+}
+
+.picks-section .stage5-heading h2 {
+    color: #ffffff;
+}
+
+.picks-section .stage5-heading h2::after {
+    content: " / CURATED";
+
+    color: #555;
+
+    font-size: 0.35em;
+
+    letter-spacing: 2px;
+
+    vertical-align: middle;
+}
+
+.picks-section .stage5-grid {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.picks-section .beat-card {
+    border-color: #202020;
+
+    background:
+        linear-gradient(
+            90deg,
+            #121212,
+            #0f0f0f
+        );
+}
+
+.picks-section .beat-card:hover {
+    border-color: rgba(208, 166, 83, 0.5);
+
+    transform: translateX(4px);
+
+    box-shadow:
+        -3px 0 0 #d0a653,
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.picks-section .beat-card::after {
+    content: "DJ WAVY PICK";
+
+    align-self: center;
+
+    margin-right: 10px;
+
+    color: #555;
+
+    font-size: 7px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ==========================================
+   STAGE 5 GRID COMMON
+========================================== */
+
+.stage5-grid {
+    width: 100%;
+}
+
+.stage5-grid .beat-card {
+    animation: stage5FadeUp 0.45s ease both;
+}
+
+.stage5-grid .beat-card:nth-child(2) {
+    animation-delay: 0.05s;
+}
+
+.stage5-grid .beat-card:nth-child(3) {
+    animation-delay: 0.10s;
+}
+
+.stage5-grid .beat-card:nth-child(4) {
+    animation-delay: 0.15s;
+}
+
+.stage5-grid .beat-card:nth-child(5) {
+    animation-delay: 0.20s;
+}
+
+.stage5-grid .beat-card:nth-child(6) {
+    animation-delay: 0.25s;
+}
+
+@keyframes stage5FadeUp {
+    from {
+        opacity: 0;
+
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================
+   BEATS SECTION
+========================================== */
+
+.beats-section {
+    padding: 120px 0 150px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0b0b0b 0%,
+            #090909 100%
+        );
+}
+
+.catalogue-inner {
+    width: min(1180px, 92%);
+
+    margin: auto;
+}
+
+.catalogue-header {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 35px;
+
+    margin-bottom: 32px;
+}
+
+.catalogue-heading {
+    min-width: 0;
+}
+
+.section-label {
+    color: #d0a653;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+.catalogue-heading h2 {
+    font-size: clamp(34px, 5vw, 58px);
+
+    letter-spacing: -3px;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+.beat-count {
+    margin-top: 13px;
+
+    color: #555;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.search-box {
+    width: min(300px, 100%);
+
+    flex-shrink: 0;
+}
+
+.search-box input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 16px;
+
+    background: #111111;
+
+    border: 1px solid #242424;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.search-box input:focus {
+    border-color: #d0a653;
+
+    background: #141414;
+
+    box-shadow:
+        0 0 0 3px rgba(208, 166, 83, 0.05);
+}
+
+.search-box input::placeholder {
+    color: #555;
+}
+
+
+/* ==========================================
+   CATEGORIES
+========================================== */
+
+.categories {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 28px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #171717;
+}
+
+.category-link {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 36px;
+
+    padding: 9px 14px;
+
+    background: #111111;
+
+    border: 1px solid #242424;
+
+    color: #777;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.category-link:hover {
+    color: #ffffff;
+
+    border-color: #555;
+
+    background: #171717;
+
+    transform: translateY(-1px);
+}
+
+.category-link.active {
+    color: #080808;
+
+    background: #d0a653;
+
+    border-color: #d0a653;
+
+    box-shadow:
+        0 4px 20px rgba(208, 166, 83, 0.08);
+}
+
+
+/* ==========================================
+   BEAT GRID
+========================================== */
+
+.beat-grid {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* ==========================================
+   BEAT CARD
+========================================== */
+
+.beat-card {
+    display: grid;
+
+    grid-template-columns: 82px 1fr auto;
+
+    align-items: center;
+
+    gap: 18px;
+
+    min-height: 98px;
+
+    padding: 8px;
+
+    background: #101010;
+
+    border: 1px solid #1d1d1d;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.beat-card:hover {
+    border-color: #343434;
+
+    background: #131313;
+
+    transform: translateX(3px);
+
+    box-shadow:
+        -3px 0 0 #d0a653;
+}
+
+
+/* ==========================================
+   COVER
+========================================== */
+
+.cover {
+    position: relative;
+
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #333333,
+            #0b0b0b 70%
+        );
+
+    border: 1px solid #292929;
+}
+
+.cover::before {
+    content: "";
+
+    position: absolute;
+
+    width: 62px;
+    height: 62px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(208, 166, 83, 0.35);
+
+    transition:
+        transform 0.5s ease,
+        border-color 0.3s ease;
+}
+
+.beat-card:hover .cover::before {
+    transform: rotate(25deg) scale(1.05);
+
+    border-color: rgba(208, 166, 83, 0.6);
+}
+
+.track-number {
+    position: absolute;
+
+    top: 6px;
+    left: 7px;
+
+    color: #777;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    z-index: 2;
+}
+
+.play-btn {
+    position: relative;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(208, 166, 83, 0.7);
+
+    background: rgba(8, 8, 8, 0.88);
+
+    color: #d0a653;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.play-btn:hover,
+.play-btn:active {
+    background: #d0a653;
+
+    color: #080808;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 20px rgba(208, 166, 83, 0.12);
+}
+
+
+/* ==========================================
+   BEAT INFO
+========================================== */
+
+.beat-info {
+    min-width: 0;
+}
+
+.beat-info h3 {
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    margin-bottom: 7px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.beat-info p {
+    color: #666;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.meta-dot {
+    color: #d0a653;
+
+    margin: 0 4px;
+}
+
+
+/* ==========================================
+   DOWNLOAD
+========================================== */
+
+.download-btn {
+    padding: 10px 14px;
+
+    background: transparent;
+
+    border: 1px solid #333;
+
+    color: #999;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.download-btn:hover,
+.download-btn:active {
+    color: #080808;
+
+    background: #d0a653;
+
+    border-color: #d0a653;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   EMPTY CATALOGUE
+========================================== */
+
+.empty-catalogue {
+    padding: 75px 25px;
+
+    text-align: center;
+
+    color: #555;
+
+    border: 1px dashed #292929;
+
+    background: #0e0e0e;
+}
+
+.empty-icon {
+    width: 54px;
+    height: 54px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #292929;
+
+    border-radius: 50%;
+
+    color: #d0a653;
+
+    font-size: 22px;
+}
+
+.empty-label {
+    color: #d0a653;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+}
+
+.empty-catalogue h3 {
+    color: #ffffff;
+
+    font-size: 22px;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 10px;
+}
+
+.empty-catalogue > p:last-of-type {
+    color: #555;
+
+    font-size: 11px;
+}
+
+.empty-button {
+    display: inline-flex;
+
+    margin-top: 22px;
+
+    padding: 11px 16px;
+
+    background: #d0a653;
+
+    color: #080808;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.empty-button:hover {
+    background: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   ABOUT / CONTACT
+========================================== */
+
+.about-section,
+.contact-section {
+    padding: 130px 0;
+}
+
+.about-inner,
+.contact-inner {
+    width: min(900px, 92%);
+
+    margin: auto;
+}
+
+.about-inner h2,
+.contact-inner h2 {
+    font-size: clamp(38px, 6vw, 70px);
+
+    letter-spacing: -4px;
+
+    margin-bottom: 28px;
+}
+
+.about-inner > p:last-child,
+.contact-inner > p:not(.section-label) {
+    color: #777;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+}
+
+.contact-button {
+    display: inline-flex;
+
+    margin-top: 28px;
+
+    padding: 14px 20px;
+
+    border: 1px solid #333;
+
+    color: #ffffff;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.contact-button:hover {
+    background: #d0a653;
+
+    border-color: #d0a653;
+
+    color: #080808;
+}
+
+
+/* ==========================================
+   MINI PLAYER
+========================================== */
+
+.player {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    min-height: 82px;
+
+    background: rgba(8, 8, 8, 0.97);
+
+    border-top: 1px solid #292929;
+
+    z-index: 2000;
+
+    transform: translateY(110%);
+
+    transition:
+        transform 0.35s ease;
+
+    backdrop-filter: blur(14px);
+}
+
+.player.player-active {
+    transform: translateY(0);
+}
+
+.player-inner {
+    width: min(1180px, 94%);
+
+    min-height: 82px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.3fr
+        auto
+        2fr
+        150px;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+/* ==========================================
+   PLAYER TRACK
+========================================== */
+
+.player-track {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.mini-cover {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #272727,
+            #0b0b0b
+        );
+
+    border: 1px solid #333;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #d0a653;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    overflow: hidden;
+}
+
+.mini-cover img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.player-info {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.player-info strong {
+    color: #ffffff;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.player-info span {
+    color: #666;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================
+   PLAYER CONTROLS
+========================================== */
+
+.player-controls {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+}
+
+.player-controls button {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #aaa;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.player-controls button:hover,
+.player-controls button:active {
+    color: #ffffff;
+
+    background: #1c1c1c;
+}
+
+.player-controls .main-play {
+    width: 46px;
+    height: 46px;
+
+    background: #d0a653;
+
+    color: #080808;
+
+    font-size: 14px;
+}
+
+.player-controls .main-play:hover {
+    background: #ffffff;
+
+    transform: scale(1.05);
+}
+
+
+/* ==========================================
+   PLAYER PROGRESS
+========================================== */
+
+.player-progress {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.player-progress span {
+    color: #666;
+
+    font-size: 9px;
+
+    min-width: 30px;
+}
+
+.player-progress span:last-child {
+    text-align: right;
+}
+
+.player-progress input {
+    width: 100%;
+
+    accent-color: #d0a653;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   PLAYER VOLUME
+========================================== */
+
+.player-volume {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.player-volume span {
+    color: #777;
+
+    font-size: 11px;
+}
+
+.player-volume input {
+    width: 100%;
+
+    accent-color: #d0a653;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+    padding: 50px 4%;
+
+    border-top: 1px solid #1b1b1b;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.footer-logo {
+    font-size: 14px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.footer-logo span {
+    color: #d0a653;
+}
+
+footer p {
+    color: #555;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================
+   TABLETS
+========================================== */
+
+@media (max-width: 1200px) {
+
+    .navbar {
+        height: 68px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-inner nav {
+        display: none;
+
+        position: absolute;
+
+        top: 68px;
+        left: 0;
+
+        width: 100%;
+
+        padding: 20px;
+
+        background: #0b0b0b;
+
+        border-bottom: 1px solid #242424;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+
+    .nav-inner nav.open {
+        display: flex;
+    }
+
+    .hero {
+        min-height: 650px;
+
+        padding-top: 130px;
+    }
+
+    .beat-grid {
+        gap: 7px;
+    }
+
+    .featured-section .stage5-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ==========================================
+   PHONES
+========================================== */
+
+@media (max-width: 600px) {
+
+    .nav-inner {
+        width: 92%;
+    }
+
+    .logo {
+        font-size: 15px;
+
+        letter-spacing: 2px;
+    }
+
+    .hero {
+        min-height: 620px;
+
+        padding:
+            120px 5%
+            100px;
+    }
+
+    .hero h1 {
+        letter-spacing: -4px;
+    }
+
+    .hero::before {
+        width: 240px;
+        height: 240px;
+
+        right: -80px;
+    }
+
+    .hero::after {
+        left: 5%;
+
+        height: 100px;
+    }
+
+    /* STAGE 5 MOBILE */
+
+    .stage5-section {
+        padding: 70px 0;
+    }
+
+    .featured-section {
+        padding-top: 80px;
+    }
+
+    .stage5-header {
+        display: block;
+
+        margin-bottom: 22px;
+    }
+
+    .stage5-heading h2 {
+        letter-spacing: -2px;
+    }
+
+    .stage5-count {
+        display: block;
+
+        margin-top: 12px;
+
+        padding-bottom: 0;
+    }
+
+    .featured-section .stage5-grid {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+    .featured-section .beat-card {
+        min-height: 92px;
+    }
+
+    .featured-section .cover {
+        width: 68px;
+        height: 68px;
+    }
+
+    .featured-section .cover::before {
+        width: 52px;
+        height: 52px;
+    }
+
+    .featured-section .beat-info h3 {
+        font-size: 14px;
+    }
+
+    .picks-section {
+        padding-bottom: 100px;
+    }
+
+    .picks-section .beat-card::after {
+        display: none;
+    }
+
+    .beats-section {
+        padding: 90px 0 110px;
+    }
+
+    .catalogue-header {
+        display: block;
+
+        margin-bottom: 25px;
+    }
+
+    .catalogue-heading h2 {
+        letter-spacing: -2px;
+    }
+
+    .search-box {
+        width: 100%;
+
+        margin-top: 24px;
+    }
+
+    .categories {
+        gap: 6px;
+
+        margin-bottom: 22px;
+
+        padding-bottom: 16px;
+    }
+
+    .category-link {
+        min-height: 34px;
+
+        padding: 8px 11px;
+
+        font-size: 8px;
+    }
+
+    .beat-card {
+        grid-template-columns: 68px 1fr;
+
+        gap: 13px;
+
+        padding: 7px;
+
+        min-height: 82px;
+    }
+
+    .cover {
+        width: 68px;
+        height: 68px;
+    }
+
+    .cover::before {
+        width: 52px;
+        height: 52px;
+    }
+
+    .play-btn {
+        width: 36px;
+        height: 36px;
+
+        font-size: 12px;
+    }
+
+    .beat-info h3 {
+        font-size: 14px;
+    }
+
+    .beat-info p {
+        font-size: 8px;
+    }
+
+    .download-btn {
+        grid-column: 2;
+
+        justify-self: start;
+
+        padding: 7px 10px;
+
+        font-size: 8px;
+    }
+
+    .empty-catalogue {
+        padding: 55px 18px;
+    }
+
+    .about-section,
+    .contact-section {
+        padding: 90px 4%;
+    }
+
+    .about-inner > p:last-child,
+    .contact-inner > p:not(.section-label) {
+        font-size: 15px;
+    }
+
+
+    /* ======================================
+       MOBILE MINI PLAYER
+    ====================================== */
+
+    .player {
+        min-height: 0;
+
+        padding: 10px 0 12px;
+    }
+
+    .player-inner {
+        width: 94%;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 8px;
+
+        padding: 4px 0;
+    }
+
+    .player-track {
+        width: 100%;
+
+        justify-content: center;
+
+        min-width: 0;
+    }
+
+    .mini-cover {
+        width: 42px;
+        height: 42px;
+    }
+
+    .player-info strong {
+        font-size: 11px;
+    }
+
+    .player-info span {
+        font-size: 8px;
+    }
+
+    .player-controls {
+        order: 2;
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        min-height: 46px;
+
+        visibility: visible;
+
+        opacity: 1;
+    }
+
+    .player-controls button {
+        width: 34px;
+        height: 34px;
+
+        flex-shrink: 0;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        visibility: visible;
+
+        opacity: 1;
+
+        font-size: 13px;
+    }
+
+    .player-controls .main-play {
+        width: 42px;
+        height: 42px;
+
+        flex-shrink: 0;
+    }
+
+    .player-progress {
+        order: 3;
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+    }
+
+    .player-progress input {
+        min-width: 0;
+    }
+
+    .player-volume {
+        order: 4;
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+    }
+
+    footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+}
+
+
+/* ==========================================
+   VERY SMALL PHONES
+========================================== */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 48px;
+
+        letter-spacing: -3px;
+    }
+
+    .player-controls {
+        gap: 5px;
+    }
+
+    .player-controls button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .player-controls .main-play {
+        width: 40px;
+        height: 40px;
+    }
+
+    .category-link {
+        padding: 8px 9px;
+
+        font-size: 7px;
+    }
+
+    .stage5-heading h2 {
+        font-size: 32px;
+    }
+}
+
+/* ==========================================
+   WAVE BEATZ — STAGE 6.4
+   CATALOGUE METADATA + SEARCH + SORT
+   ========================================== */
+
+.catalogue-tools {
+    width: min(1180px, 92%);
+    margin: 0 auto 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    flex-wrap: wrap;
+}
+
+.catalogue-tools .search-box {
+    flex: 1 1 420px;
+    min-width: 240px;
+}
+
+.catalogue-tools .search-box input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 18px;
+
+    background: #101010;
+    border: 1px solid #252525;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.catalogue-tools .search-box input::placeholder {
+    color: #666;
+}
+
+.catalogue-tools .search-box input:focus {
+    border-color: #d0a653;
+
+    box-shadow:
+        0 0 0 1px rgba(208, 166, 83, 0.15),
+        0 8px 30px rgba(0, 0, 0, 0.25);
+
+    outline: none;
+}
+
+.sort-select {
+    height: 48px;
+
+    min-width: 180px;
+
+    padding: 0 42px 0 16px;
+
+    background: #101010;
+    border: 1px solid #252525;
+
+    color: #d0a653;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.sort-select:hover,
+.sort-select:focus {
+    border-color: #d0a653;
+    background: #141414;
+}
+
+.sort-select option {
+    background: #101010;
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   BEAT BADGES
+========================================== */
+
+.beat-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 22px;
+
+    padding: 4px 8px;
+
+    border: 1px solid #333;
+
+    background: rgba(8, 8, 8, 0.88);
+
+    color: #999;
+
+    font-size: 8px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    white-space: nowrap;
+}
+
+.featured-badge {
+    border-color: rgba(208, 166, 83, 0.65);
+    color: #d0a653;
+}
+
+.pick-badge {
+    border-color: #555;
+    color: #ffffff;
+}
+
+.new-badge {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   BEAT EXTRA METADATA
+========================================== */
+
+.beat-extra-meta {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+}
+
+.meta-chip {
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 24px;
+
+    padding: 4px 8px;
+
+    background: #111111;
+
+    border: 1px solid #242424;
+
+    color: #999;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+.meta-chip strong {
+    color: #d0a653;
+
+    margin-right: 4px;
+}
+
+
+/* ==========================================
+   TAGS
+========================================== */
+
+.beat-tags {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    flex-wrap: wrap;
+
+    margin-top: 9px;
+}
+
+.beat-tags span {
+    color: #666;
+
+    font-size: 8px;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+}
+
+.beat-tags span::before {
+    content: "#";
+    color: #444;
+}
+
+
+/* ==========================================
+   SEARCH EMPTY STATE
+========================================== */
+
+.search-empty-state {
+    width: min(1180px, 92%);
+
+    margin: 30px auto;
+
+    padding: 55px 25px;
+
+    text-align: center;
+
+    background: #0d0d0d;
+
+    border: 1px solid #202020;
+}
+
+.search-empty-state h3 {
+    color: #ffffff;
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 10px;
+}
+
+.search-empty-state p {
+    color: #666;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   CATALOGUE CARD METADATA
+========================================== */
+
+.beat-card .beat-info {
+    min-width: 0;
+}
+
+.beat-card .beat-title {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   MOBILE CATALOGUE
+========================================== */
+
+@media (max-width: 760px) {
+
+    .catalogue-tools {
+        width: 92%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+    }
+
+    .catalogue-tools .search-box {
+        width: 100%;
+
+        flex: none;
+    }
+
+    .sort-select {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .beat-extra-meta {
+        gap: 5px;
+    }
+
+    .meta-chip {
+        font-size: 7px;
+
+        padding: 4px 6px;
+    }
+
+    .beat-tags span {
+        font-size: 7px;
+    }
+
+    .beat-badge {
+        font-size: 7px;
+
+        padding: 3px 6px;
+    }
+}
+
+
+/* ==========================================
+   VERY SMALL PHONES
+========================================== */
+
+@media (max-width: 420px) {
+
+    .catalogue-tools {
+        width: 94%;
+    }
+
+    .catalogue-tools .search-box input,
+    .sort-select {
+        height: 44px;
+    }
+
+    .search-empty-state {
+        width: 94%;
+
+        padding: 40px 18px;
+    }
+}
+
+
+/* ==========================================
+   WAVE BEATZ — STAGE 6.4 LAYOUT COMPATIBILITY
+   FIXES NEW HTML CLASSES AGAINST STAGE 5 CSS
+========================================== */
+
+
+/* ==========================================
+   NAVIGATION COMPATIBILITY
+========================================== */
+
+.nav-container {
+    width: min(1180px, 92%);
+    height: 100%;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.main-nav .nav-link {
+    color: #999;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.main-nav .nav-link:hover {
+    color: #d0a653;
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   HERO COMPATIBILITY
+========================================== */
+
+.hero-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 8, 8, 0.96) 0%,
+            rgba(8, 8, 8, 0.78) 45%,
+            rgba(8, 8, 8, 0.30) 100%
+        );
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* ==========================================
+   BEAT CARD — NEW HTML COMPATIBILITY
+========================================== */
+
+.beat-card {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.beat-cover {
+    width: 92px;
+    height: 92px;
+
+    min-width: 92px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #242424,
+            #0b0b0b
+        );
+
+    border: 1px solid #292929;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.beat-cover img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ==========================================
+   PLACEHOLDER
+========================================== */
+
+.cover-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d1d1d,
+            #0a0a0a
+        );
+
+    color: #d0a653;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================
+   NEW CARD INFO
+========================================== */
+
+.beat-card .beat-info {
+    flex: 1;
+
+    min-width: 0;
+
+    overflow: hidden;
+}
+
+.beat-card .beat-info h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 900;
+
+    line-height: 1.2;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.beat-card .beat-info p {
+    margin-top: 6px;
+
+    color: #666;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   PLAY BUTTON COMPATIBILITY
+========================================== */
+
+.beat-card .play-btn {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #333;
+
+    background: #111;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.beat-card .play-btn:hover {
+    border-color: #d0a653;
+
+    background: #d0a653;
+
+    color: #080808;
+
+    transform: scale(1.04);
+}
+
+
+/* ==========================================
+   STAGE 5 CARD
+========================================== */
+
+.stage5-card {
+    min-width: 0;
+}
+
+
+/* ==========================================
+   BEAT GRID MOBILE SAFETY
+========================================== */
+
+.beat-grid {
+    width: 100%;
+    min-width: 0;
+}
+
+.beat-grid .beat-card {
+    max-width: 100%;
+}
+
+
+/* ==========================================
+   FEATURE / NEW / PICK IMAGE SAFETY
+========================================== */
+
+.stage5-grid .beat-cover {
+    flex-shrink: 0;
+}
+
+.featured-section .beat-cover {
+    width: 92px;
+    height: 92px;
+    min-width: 92px;
+}
+
+.new-drops-section .beat-cover,
+.picks-section .beat-cover {
+    width: 72px;
+    height: 72px;
+    min-width: 72px;
+}
+
+
+/* ==========================================
+   MOBILE — FULL WIDTH
+========================================== */
+
+@media (max-width: 760px) {
+
+    .nav-container {
+        width: 92%;
+    }
+
+    .main-nav {
+        position: absolute;
+
+        top: 76px;
+        right: 0;
+
+        width: min(280px, 92vw);
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 8px;
+
+        background: rgba(10, 10, 10, 0.98);
+
+        border: 1px solid #242424;
+
+        box-shadow:
+            0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .main-nav.open {
+        display: flex;
+    }
+
+    .main-nav .nav-link {
+        display: block;
+
+        width: 100%;
+
+        padding: 14px;
+
+        border-bottom: 1px solid #1b1b1b;
+    }
+
+    .main-nav .nav-link:last-child {
+        border-bottom: 0;
+    }
+
+    .beat-card {
+        width: 100%;
+
+        gap: 10px;
+    }
+
+    .beat-cover {
+        width: 70px;
+        height: 70px;
+        min-width: 70px;
+    }
+
+    .beat-card .beat-info h3 {
+        font-size: 12px;
+    }
+
+    .beat-card .beat-info p {
+        font-size: 8px;
+    }
+
+    .beat-card .play-btn {
+        width: 34px;
+        height: 34px;
+
+        font-size: 10px;
+    }
+
+    .featured-section .beat-cover {
+        width: 70px;
+        height: 70px;
+        min-width: 70px;
+    }
+
+    .new-drops-section .beat-cover,
+    .picks-section .beat-cover {
+        width: 64px;
+        height: 64px;
+        min-width: 64px;
+    }
+
+    .hero {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .hero-content {
+        width: 92%;
+        max-width: 100%;
+    }
+
+    .stage5-section,
+    .beats-section {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .catalogue-inner {
+        width: 92%;
+        max-width: 100%;
+    }
+}
+
+
+/* ==========================================
+   SMALL PHONE SAFETY
+========================================== */
+
+@media (max-width: 420px) {
+
+    .nav-container {
+        width: 94%;
+    }
+
+    .beat-card {
+        gap: 8px;
+    }
+
+    .beat-cover {
+        width: 62px;
+        height: 62px;
+        min-width: 62px;
+    }
+
+    .featured-section .beat-cover {
+        width: 62px;
+        height: 62px;
+        min-width: 62px;
+    }
+
+    .beat-card .play-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .beat-card .beat-info h3 {
+        font-size: 11px;
+    }
+}
+
+
+/* ==========================================
+   WAVE BEATZ — NAV + PLAY BUTTON FIX
+   STAGE 6.4
+========================================== */
+
+/* ------------------------------------------
+   NAVIGATION
+------------------------------------------ */
+
+.nav-container {
+    position: relative;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.main-nav .nav-link {
+    display: block;
+    color: #999;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.main-nav .nav-link:hover {
+    color: #d0a653;
+    transform: translateY(-1px);
+}
+
+
+/* ------------------------------------------
+   HAMBURGER BUTTON
+------------------------------------------ */
+
+.menu-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid #2b2b2b;
+    background: #101010;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1100;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease,
+        background 0.2s ease;
+}
+
+.menu-toggle:hover {
+    border-color: #d0a653;
+    background: #151515;
+}
+
+.menu-toggle:hover span {
+    background: #d0a653;
+}
+
+
+/* ------------------------------------------
+   PLAY BUTTON
+------------------------------------------ */
+
+.beat-cover {
+    position: relative;
+}
+
+.play-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+
+    background: rgba(8, 8, 8, 0.82);
+    color: #ffffff;
+
+    font-size: 13px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 5;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.beat-cover:hover .play-button,
+.beat-cover:focus-within .play-button {
+    opacity: 1;
+    visibility: visible;
+}
+
+.play-button:hover {
+    background: #d0a653;
+    border-color: #d0a653;
+    color: #080808;
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+
+/* ------------------------------------------
+   MOBILE NAVIGATION
+------------------------------------------ */
+
+@media (max-width: 760px) {
+
+    .nav-container {
+        width: 92%;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+
+        width: min(280px, 88vw);
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 8px;
+
+        background: rgba(10, 10, 10, 0.98);
+
+        border: 1px solid #292929;
+
+        box-shadow:
+            0 20px 50px rgba(0, 0, 0, 0.55);
+
+        z-index: 1050;
+    }
+
+    .main-nav.open {
+        display: flex;
+    }
+
+    .main-nav .nav-link {
+        width: 100%;
+        padding: 14px 15px;
+
+        font-size: 10px;
+
+        border-bottom: 1px solid #1d1d1d;
+    }
+
+    .main-nav .nav-link:last-child {
+        border-bottom: 0;
+    }
+
+
+    /* Show play button on touch devices */
+    .play-button {
+        opacity: 1;
+        visibility: visible;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* ------------------------------------------
+   SMALL PHONE
+------------------------------------------ */
+
+@media (max-width: 420px) {
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .menu-toggle span {
+        width: 17px;
+    }
+
+    .play-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+/* ------------------------------------------
+   ACCESSIBILITY / KEYBOARD
+------------------------------------------ */
+
+.menu-toggle:focus-visible,
+.play-button:focus-visible,
+.main-nav .nav-link:focus-visible {
+    outline: 1px solid #d0a653;
+    outline-offset: 3px;
+}
+
+
+/* ==========================================
+   MOBILE MENU — JS USES .active
+========================================== */
+
+@media (max-width: 760px) {
+
+    .main-nav.active {
+        display: flex;
+    }
+
+}
+
+
+/* =========================================================
+   WAVE BEATZ — STAGE 6.4 PREMIUM MOTION + CATALOGUE POLISH
+   No external libraries
+   No downloads required
+========================================================= */
+
+
+/* =========================================================
+   1. HOMEPAGE SECTION ORDER
+   Catalogue moves before Featured / New Drops / Picks
+========================================================= */
+
+body {
+    position: relative;
+}
+
+.beats-section {
+    order: 2;
+}
+
+.stage5-section {
+    order: 3;
+}
+
+.about-section {
+    order: 4;
+}
+
+.contact-section {
+    order: 5;
+}
+
+footer {
+    order: 6;
+}
+
+
+/* =========================================================
+   2. HERO — SUBTLE ENTRANCE
+========================================================= */
+
+.hero-content {
+    animation: waveHeroIn 0.9s ease-out both;
+}
+
+.hero-eyebrow {
+    animation: waveFadeUp 0.7s ease-out 0.05s both;
+}
+
+.hero h1 {
+    animation: waveFadeUp 0.8s ease-out 0.12s both;
+}
+
+.hero-description {
+    animation: waveFadeUp 0.8s ease-out 0.20s both;
+}
+
+.hero-button {
+    animation: waveFadeUp 0.8s ease-out 0.28s both;
+}
+
+
+/* =========================================================
+   3. CATALOGUE — BRING IT FORWARD
+========================================================= */
+
+.beats-section {
+    position: relative;
+    z-index: 2;
+}
+
+.catalogue-inner {
+    animation: catalogueReveal 0.8s ease-out both;
+}
+
+.catalogue-header {
+    animation: waveFadeUp 0.7s ease-out both;
+}
+
+
+/* =========================================================
+   4. SEARCH BAR — PREMIUM COLOURFUL DESIGN
+========================================================= */
+
+#searchInput {
+    width: 100%;
+    max-width: 680px;
+    height: 58px;
+
+    padding: 0 22px;
+
+    border: 1px solid rgba(208, 166, 83, 0.55);
+    border-radius: 10px;
+
+    outline: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17120a 0%,
+            #111111 45%,
+            #0d1515 100%
+        );
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    box-shadow:
+        0 0 0 1px rgba(208, 166, 83, 0.06),
+        0 12px 35px rgba(0, 0, 0, 0.35);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+#searchInput::placeholder {
+    color: #777777;
+    transition: color 0.25s ease;
+}
+
+#searchInput:hover {
+    border-color: rgba(208, 166, 83, 0.85);
+
+    box-shadow:
+        0 0 0 1px rgba(208, 166, 83, 0.12),
+        0 14px 40px rgba(0, 0, 0, 0.42);
+}
+
+#searchInput:focus {
+    border-color: #d0a653;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1b1509 0%,
+            #101010 48%,
+            #0d1919 100%
+        );
+
+    box-shadow:
+        0 0 0 3px rgba(208, 166, 83, 0.10),
+        0 0 28px rgba(208, 166, 83, 0.16),
+        0 18px 45px rgba(0, 0, 0, 0.45);
+
+    transform: translateY(-1px);
+}
+
+#searchInput:focus::placeholder {
+    color: #999999;
+}
+
+
+/* =========================================================
+   5. SEARCH CONTAINER
+========================================================= */
+
+.catalogue-tools {
+    position: relative;
+    z-index: 5;
+}
+
+.catalogue-tools input {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.catalogue-tools input::selection {
+    background: #d0a653;
+    color: #080808;
+}
+
+
+/* =========================================================
+   6. SEARCH ICON / BUTTON POLISH
+========================================================= */
+
+.catalogue-tools button,
+#searchButton {
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.catalogue-tools button:hover,
+#searchButton:hover {
+    transform: scale(1.08);
+    color: #d0a653;
+}
+
+
+/* =========================================================
+   7. SORT SELECT
+========================================================= */
+
+#sortSelect,
+.sort-select {
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+#sortSelect:hover,
+.sort-select:hover {
+    border-color: rgba(208, 166, 83, 0.75);
+    transform: translateY(-1px);
+}
+
+#sortSelect:focus,
+.sort-select:focus {
+    outline: none;
+    border-color: #d0a653;
+
+    box-shadow:
+        0 0 0 3px rgba(208, 166, 83, 0.08);
+}
+
+
+/* =========================================================
+   8. CATEGORY BUTTONS
+========================================================= */
+
+.catalogue-inner a,
+.catalogue-inner button {
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   9. BEAT CARDS — PREMIUM MOTION
+========================================================= */
+
+.beat-card {
+    transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+.beat-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(208, 166, 83, 0.35);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.025),
+            rgba(208, 166, 83, 0.025)
+        );
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(208, 166, 83, 0.035);
+}
+
+
+/* =========================================================
+   10. BEAT ARTWORK
+========================================================= */
+
+.beat-cover {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.beat-cover img {
+    transition:
+        transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+        filter 0.35s ease;
+}
+
+.beat-card:hover .beat-cover {
+    border-color: rgba(208, 166, 83, 0.45);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.beat-card:hover .beat-cover img {
+    transform: scale(1.07);
+
+    filter:
+        brightness(1.08)
+        contrast(1.04);
+}
+
+
+/* =========================================================
+   11. PLAY BUTTON MOTION
+========================================================= */
+
+.play-button {
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.beat-card:hover .play-button {
+    transform: translate(-50%, -50%) scale(1.03);
+}
+
+.play-button:hover {
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow:
+        0 0 22px rgba(208, 166, 83, 0.25);
+}
+
+
+/* =========================================================
+   12. DOWNLOAD BUTTON
+========================================================= */
+
+.download-button,
+.download-btn {
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.download-button:hover,
+.download-btn:hover {
+    transform: translateY(-2px);
+
+    border-color: #d0a653;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.download-button:active,
+.download-btn:active {
+    transform: translateY(0) scale(0.96);
+}
+
+
+
+/* =========================================================
+   WAVE BEATZ HOMEPAGE DOWNLOAD BUTTON
+========================================================= */
+
+.homepage-download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-width: 118px;
+    height: 42px;
+
+    padding: 0 16px;
+
+    border: 1px solid rgba(208, 166, 83, 0.65);
+    border-radius: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #151515,
+        #0b0b0b
+    );
+
+    color: #d0a653;
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.homepage-download-button span {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.homepage-download-button:hover {
+    transform: translateY(-2px);
+
+    border-color: #d0a653;
+
+    background: linear-gradient(
+        135deg,
+        #202020,
+        #101010
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.45),
+        0 0 16px rgba(208, 166, 83, 0.15);
+}
+
+.homepage-download-button:active {
+    transform: translateY(0) scale(0.97);
+}
+
+
+/* =========================================================
+   13. BADGES
+========================================================= */
+
+/* =========================================================
+   13. BADGES
+========================================================= */
+
+.beat-badge {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.beat-card:hover .beat-badge {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================================
+   14. METADATA CHIPS
+========================================================= */
+
+.meta-chip,
+.beat-extra-meta span,
+.beat-tags span {
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.meta-chip:hover,
+.beat-extra-meta span:hover,
+.beat-tags span:hover {
+    color: #d0a653;
+    border-color: rgba(208, 166, 83, 0.4);
+}
+
+
+/* =========================================================
+   15. SECTION HEADINGS
+========================================================= */
+
+.stage5-heading,
+.catalogue-heading h2,
+.section-label {
+    transition:
+        letter-spacing 0.3s ease,
+        transform 0.3s ease;
+}
+
+.stage5-section:hover .stage5-heading {
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================================
+   16. NAVIGATION MOTION
+========================================================= */
+
+.logo {
+    transition:
+        transform 0.25s ease,
+        letter-spacing 0.25s ease;
+}
+
+.logo:hover {
+    transform: translateY(-1px);
+    letter-spacing: 3.5px;
+}
+
+.main-nav .nav-link {
+    position: relative;
+}
+
+.main-nav .nav-link::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 1px;
+
+    background: #d0a653;
+
+    transition: width 0.25s ease;
+}
+
+.main-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   17. HERO BUTTON
+========================================================= */
+
+.hero-button {
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.hero-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.22),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.55s ease;
+}
+
+.hero-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(208, 166, 83, 0.16);
+}
+
+.hero-button:hover::before {
+    left: 140%;
+}
+
+
+/* =========================================================
+   18. CARD ENTRANCE ANIMATION
+========================================================= */
+
+.stage5-grid .beat-card:nth-child(1) {
+    animation: waveFadeUp 0.55s ease-out 0.05s both;
+}
+
+.stage5-grid .beat-card:nth-child(2) {
+    animation: waveFadeUp 0.55s ease-out 0.10s both;
+}
+
+.stage5-grid .beat-card:nth-child(3) {
+    animation: waveFadeUp 0.55s ease-out 0.15s both;
+}
+
+.stage5-grid .beat-card:nth-child(4) {
+    animation: waveFadeUp 0.55s ease-out 0.20s both;
+}
+
+.stage5-grid .beat-card:nth-child(5) {
+    animation: waveFadeUp 0.55s ease-out 0.25s both;
+}
+
+.stage5-grid .beat-card:nth-child(6) {
+    animation: waveFadeUp 0.55s ease-out 0.30s both;
+}
+
+.beats-section .beat-card:nth-child(1) {
+    animation: waveFadeUp 0.55s ease-out 0.05s both;
+}
+
+.beats-section .beat-card:nth-child(2) {
+    animation: waveFadeUp 0.55s ease-out 0.10s both;
+}
+
+.beats-section .beat-card:nth-child(3) {
+    animation: waveFadeUp 0.55s ease-out 0.15s both;
+}
+
+.beats-section .beat-card:nth-child(4) {
+    animation: waveFadeUp 0.55s ease-out 0.20s both;
+}
+
+.beats-section .beat-card:nth-child(5) {
+    animation: waveFadeUp 0.55s ease-out 0.25s both;
+}
+
+
+/* =========================================================
+   19. ANIMATION KEYFRAMES
+========================================================= */
+
+@keyframes waveFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes waveHeroIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(-18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes catalogueReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   20. MOBILE SEARCH
+========================================================= */
+
+@media (max-width: 760px) {
+
+    #searchInput {
+        width: 100%;
+        max-width: none;
+        height: 54px;
+
+        padding: 0 17px;
+
+        font-size: 14px;
+
+        border-radius: 9px;
+    }
+
+    .beats-section {
+        width: 100%;
+    }
+
+    .catalogue-inner {
+        width: 92%;
+    }
+
+    .beat-card:hover {
+        transform: translateY(-2px);
+    }
+
+}
+
+
+/* =========================================================
+   21. SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+    #searchInput {
+        height: 51px;
+
+        padding: 0 15px;
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   22. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+
+/* =========================================================
+   WAVE BEATZ — CATALOGUE FIRST HOMEPAGE
+========================================================= */
+
+.hero {
+    display: none;
+}
+
+.beats-section {
+    display: block;
+    width: 100%;
+    min-height: auto;
+    margin-top: 76px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    position: relative;
+}
+
+.beats-section::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(208, 166, 83, 0.55),
+            transparent
+        );
+}
+
+.beats-section .catalogue-inner {
+    animation:
+        catalogueFirstIn
+        0.7s
+        ease-out
+        both;
+}
+
+#searchInput {
+    position: relative;
+    z-index: 10;
+}
+
+.beats-section .catalogue-header h2 {
+    font-size: clamp(32px, 6vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+}
+
+@keyframes catalogueFirstIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@media (max-width: 760px) {
+
+    .beats-section {
+        margin-top: 76px;
+        padding-top: 42px;
+        padding-bottom: 55px;
+    }
+
+    .beats-section .catalogue-inner {
+        width: 92%;
+    }
+
+}
+
+@media (max-width: 420px) {
+
+    .beats-section {
+        padding-top: 35px;
+    }
+
+}
+
+
+/* =========================================================
+   WAVE BEATZ BEAT PAGE DOWNLOAD BUTTON
+========================================================= */
+
+.beat-actions .beat-download-link {
+    min-width: 190px;
+    min-height: 52px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 0 24px;
+
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+
+    text-decoration: none;
+}
+
+.beat-actions .beat-download-link span {
+    font-size: 20px;
+    line-height: 1;
+}
+
+/* =========================================================
+   STAGE 8C — CUSTOMER PURCHASE LIBRARY
+========================================================= */
+
+.purchase-library {
+    overflow: hidden;
+}
+
+.purchase-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 20px;
+
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.025);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.purchase-item:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(208,166,83,0.35);
+
+    background: rgba(255,255,255,0.04);
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,0.28);
+}
+
+.purchase-main {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    min-width: 0;
+}
+
+.purchase-artwork {
+    width: 78px;
+    height: 78px;
+
+    flex: 0 0 78px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #111;
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.purchase-artwork img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.purchase-artwork-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #d0a653;
+
+    font-size: 30px;
+}
+
+.purchase-info {
+    min-width: 0;
+}
+
+.purchase-info .beat-title {
+    margin-bottom: 9px;
+}
+
+.purchase-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 10px;
+
+    color: rgba(255,255,255,0.48);
+
+    font-size: 10px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.purchase-details span {
+    display: inline-block;
+}
+
+.purchase-item .order-side {
+    min-width: 145px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.purchase-item .price {
+    font-weight: 800;
+}
+
+.purchase-download {
+    min-width: 125px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    color: #d0a653;
+
+    border: 1px solid rgba(208,166,83,0.55);
+
+    background: rgba(208,166,83,0.06);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.purchase-download span {
+    font-size: 16px;
+}
+
+.purchase-download:hover {
+    transform: translateY(-2px);
+
+    background: #d0a653;
+
+    color: #090909;
+
+    border-color: #d0a653;
+}
+
+.purchase-item .expiry {
+    max-width: 150px;
+
+    text-align: right;
+
+    color: rgba(255,255,255,0.42);
+
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: 0.7px;
+}
+
+@media (max-width: 700px) {
+
+    .purchase-item {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .purchase-main {
+        align-items: flex-start;
+    }
+
+    .purchase-item .order-side {
+        width: 100%;
+
+        min-width: 0;
+
+        align-items: flex-start;
+    }
+
+    .purchase-item .expiry {
+        max-width: none;
+
+        text-align: left;
+    }
+
+    .purchase-download {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   STAGE 8E — CUSTOMER ACCOUNT POLISH
+========================================================= */
+
+.account-welcome {
+    margin-bottom: 6px;
+}
+
+.account-welcome strong {
+    color: #d0a653;
+}
+
+.account-subtitle {
+    margin-top: 4px;
+
+    color: rgba(255,255,255,0.48);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* ACCOUNT ACTIONS */
+
+.account-actions-card {
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+.account-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.account-action {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    min-width: 0;
+
+    padding: 18px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.025);
+
+    color: #ffffff;
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.account-action:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(208,166,83,0.45);
+
+    background: rgba(208,166,83,0.045);
+
+    box-shadow:
+        0 10px 26px rgba(0,0,0,0.25);
+}
+
+.account-action.primary {
+    border-color: rgba(208,166,83,0.35);
+}
+
+.account-action .action-icon {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(208,166,83,0.08);
+
+    color: #d0a653;
+
+    font-size: 21px;
+}
+
+.account-action strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.account-action small {
+    display: block;
+
+    color: rgba(255,255,255,0.42);
+
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.account-action .action-arrow {
+    margin-left: auto;
+
+    color: #d0a653;
+
+    font-size: 19px;
+}
+
+@media (max-width: 700px) {
+
+    .account-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .account-action {
+        padding: 16px;
+    }
+
+}
+

@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ beat.title }} — {{ beat.genre }} Beat | WAVE BEATZ — DJ WAVY
+    </title>
+
+    <meta
+        name="description"
+        content="Listen to {{ beat.title }} by DJ WAVY — a premium {{ beat.genre }} instrumental from WAVE BEATZ. Listen, license and download this beat."
+    >
+
+    <meta
+        name="keywords"
+        content="{{ beat.title }}, DJ WAVY, WAVE BEATZ, {{ beat.genre }}, {{ beat.mood|default("instrumental") }}, {{ beat.bpm|default("") }} BPM, instrumental beat, beat licensing"
+    >
+
+    <meta
+        name="author"
+        content="DJ WAVY — WAVE BEATZ"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow, max-image-preview:large"
+    >
+
+    <link
+        rel="canonical"
+        href="{{ site_url }}{{ request.path }}"
+    >
+
+    <!-- Open Graph -->
+    <meta
+        property="og:type"
+        content="music.song"
+    >
+
+    <meta
+        property="og:site_name"
+        content="WAVE BEATZ"
+    >
+
+    <meta
+        property="og:title"
+        content="{{ beat.title }} — {{ beat.genre }} Beat | DJ WAVY"
+    >
+
+    <meta
+        property="og:description"
+        content="Listen to {{ beat.title }} by DJ WAVY — premium {{ beat.genre }} instrumental from WAVE BEATZ."
+    >
+
+    <meta
+        property="og:url"
+        content="{{ site_url }}{{ request.path }}"
+    >
+
+    {% if beat.artwork_file %}
+    <meta
+        property="og:image"
+        content="{{ site_url }}{{ url_for("static", filename="images/" + beat.artwork_file) }}"
+    >
+    {% endif %}
+
+    <!-- Twitter / X -->
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="{{ beat.title }} — {{ beat.genre }} Beat | DJ WAVY"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Listen to {{ beat.title }} by DJ WAVY on WAVE BEATZ."
+    >
+
+    {% if beat.artwork_file %}
+    <meta
+        name="twitter:image"
+        content="{{ site_url }}{{ url_for("static", filename="images/" + beat.artwork_file) }}"
+    >
+    {% endif %}
+
+    <!-- Music structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicRecording",
+        "name": {{ beat.title|tojson }},
+        "genre": {{ beat.genre|default("Instrumental")|tojson }},
+        "byArtist": {
+            "@type": "Person",
+            "name": "DJ WAVY"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "WAVE BEATZ"
+        },
+        "url": {{ (site_url ~ request.path)|tojson }}
+        {% if beat.bpm %},
+        "additionalProperty": {
+            "@type": "PropertyValue",
+            "name": "BPM",
+            "value": {{ beat.bpm|tojson }}
+        }
+        {% endif %}
+    }
+    </script>
+
+    <!-- Breadcrumb structured data -->
+    {% set breadcrumb_routes = {
+        'TRAP': 'trap',
+        'AFROBEAT': 'afrobeat',
+        'HIP-HOP': 'hip-hop',
+        'DANCEHALL': 'dancehall',
+        'R&B': 'rnb'
+    } %}
+
+    {% set breadcrumb_genre = beat.genre|upper %}
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "WAVE BEATZ",
+                "item": {{ site_url|tojson }}
+            }
+            {% if breadcrumb_genre in breadcrumb_routes %},
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": {{ beat.genre ~ " Beats"|tojson }},
+                "item": {{ (site_url ~ "/" ~ breadcrumb_routes[breadcrumb_genre])|tojson }}
+            }
+            {% endif %},
+            {
+                "@type": "ListItem",
+                "position": {% if breadcrumb_genre in breadcrumb_routes %}3{% else %}2{% endif %},
+                "name": {{ beat.title|tojson }},
+                "item": {{ (site_url ~ request.path)|tojson }}
+            }
+        ]
+    }
+    </script>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for("static", filename="css/beat.css") }}"
+    >
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="beat-navbar">
+
+    <div class="beat-nav-inner">
+
+        <a href="/" class="beat-logo">
+            WAVE <span>BEATZ</span>
+        </a>
+
+        <a href="/" class="back-link">
+            ← BACK TO BEATS
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     BEAT HERO
+========================================================= -->
+
+<main class="beat-page">
+
+    <!-- =========================================================
+         BREADCRUMB NAVIGATION
+    ========================================================= -->
+
+    <nav class="beat-breadcrumbs" aria-label="Breadcrumb">
+
+        <a href="/">
+            WAVE BEATZ
+        </a>
+
+        {% if breadcrumb_genre in breadcrumb_routes %}
+
+        <span aria-hidden="true">/</span>
+
+        <a href="/{{ breadcrumb_routes[breadcrumb_genre] }}">
+            {{ beat.genre }} BEATS
+        </a>
+
+        {% endif %}
+
+        <span aria-hidden="true">/</span>
+
+        <span aria-current="page">
+            {{ beat.title }}
+        </span>
+
+    </nav>
+
+
+    <section class="beat-hero">
+
+        <!-- ARTWORK -->
+
+        <div class="beat-artwork">
+
+            {% if beat.artwork_file %}
+
+            <img
+                src="{{ url_for('static', filename='images/' + beat.artwork_file) }}"
+                alt="{{ beat.title }}"
+            >
+
+            {% else %}
+
+            <div class="beat-artwork-placeholder">
+
+                <span>
+                    WAVE
+                </span>
+
+                <strong>
+                    BEATZ
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- INFORMATION -->
+
+        <div class="beat-information">
+
+            <p class="beat-eyebrow">
+                DJ WAVY / WAVE BEATZ
+            </p>
+
+            <h1>
+                {{ beat.title }}
+            </h1>
+
+            <p class="beat-subtitle">
+                PREMIUM {{ beat.genre|default('INSTRUMENTAL') }} BEAT
+            </p>
+
+
+            <!-- PRIMARY METADATA -->
+
+            <div class="beat-meta">
+
+                {% if beat.genre %}
+
+                <div class="meta-item">
+
+                    <span class="meta-label">
+                        GENRE
+                    </span>
+
+                    <strong>
+                        {{ beat.genre }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if beat.bpm %}
+
+                <div class="meta-item">
+
+                    <span class="meta-label">
+                        BPM
+                    </span>
+
+                    <strong>
+                        {{ beat.bpm }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if beat.music_key %}
+
+                <div class="meta-item">
+
+                    <span class="meta-label">
+                        KEY
+                    </span>
+
+                    <strong>
+                        {{ beat.music_key }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if beat.mood %}
+
+                <div class="meta-item">
+
+                    <span class="meta-label">
+                        MOOD
+                    </span>
+
+                    <strong>
+                        {{ beat.mood }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if beat.duration %}
+
+                <div class="meta-item">
+
+                    <span class="meta-label">
+                        LENGTH
+                    </span>
+
+                    <strong>
+                        {{ beat.duration // 60 }}:{{
+                            '%02d'|format(beat.duration % 60)
+                        }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- PLAYER -->
+
+            <div class="beat-player">
+
+                <button
+                    class="beat-play-button"
+                    id="beatPlayButton"
+                    onclick="toggleBeatPlayer()"
+                    aria-label="Play beat"
+                >
+                    ▶
+                </button>
+
+
+                <div class="beat-player-main">
+
+                    <div class="beat-player-times">
+
+                        <span id="beatCurrentTime">
+                            0:00
+                        </span>
+
+                        <span id="beatDuration">
+                            {% if beat.duration %}
+                                {{ beat.duration // 60 }}:{{
+                                    '%02d'|format(beat.duration % 60)
+                                }}
+                            {% else %}
+                                0:00
+                            {% endif %}
+                        </span>
+
+                    </div>
+
+
+                    <input
+                        type="range"
+                        id="beatProgress"
+                        min="0"
+                        max="100"
+                        value="0"
+                        step="0.1"
+                        aria-label="Beat progress"
+                    >
+
+                </div>
+
+
+                <div class="beat-volume">
+
+                    <span>
+                        🔊
+                    </span>
+
+                    <input
+                        type="range"
+                        id="beatVolume"
+                        min="0"
+                        max="1"
+                        value="1"
+                        step="0.01"
+                        aria-label="Volume"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="beat-actions">
+
+                <a
+                    href="/licenses?beat_id={{ beat.id }}"
+                    class="download-beat-button"
+                >
+                    SEE AVAILABLE LICENSES
+                    <span>→</span>
+                </a>
+
+                {% if session.get("user_id") %}
+                <a
+                    href="/licenses?beat_id={{ beat.id }}"
+                    class="download-beat-button beat-download-link"
+                >
+                    DOWNLOAD
+                    <span>↓</span>
+                </a>
+                {% else %}
+                <a
+                    href="{{ url_for('login', next='/licenses?beat_id=' ~ beat.id) }}"
+                    class="download-beat-button beat-download-link"
+                >
+                    DOWNLOAD
+                    <span>↓</span>
+                </a>
+                {% endif %}
+
+            </div>
+
+
+            <p class="beat-note">
+                Preview this instrumental before downloading.
+                Licensing terms can be provided by DJ WAVY.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BEAT DETAILS
+    ====================================================== -->
+
+    <section class="beat-details">
+
+        <div class="details-heading">
+
+            <p>
+                BEAT INFORMATION
+            </p>
+
+            <h2>
+                THE DETAILS.
+            </h2>
+
+        </div>
+
+
+        <div class="details-grid">
+
+            <div class="detail-box">
+
+                <span>
+                    TITLE
+                </span>
+
+                <strong>
+                    {{ beat.title }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>
+                    GENRE
+                </span>
+
+                <strong>
+                    {{ beat.genre|default('—') }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>
+                    BPM
+                </span>
+
+                <strong>
+                    {{ beat.bpm|default('—') }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>
+                    KEY
+                </span>
+
+                <strong>
+                    {{ beat.music_key|default('—') }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>
+                    MOOD
+                </span>
+
+                <strong>
+                    {{ beat.mood|default('—') }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>
+                    LENGTH
+                </span>
+
+                <strong>
+
+                    {% if beat.duration %}
+
+                        {{ beat.duration // 60 }}:{{
+                            '%02d'|format(beat.duration % 60)
+                        }}
+
+                    {% else %}
+
+                        —
+
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>
+                    PRODUCER
+                </span>
+
+                <strong>
+                    {{ beat.producer|default('DJ WAVY') }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>
+                    LICENSE
+                </span>
+
+                <strong>
+                    {{ beat.license_type|default('Basic Lease') }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- TAGS -->
+
+        {% if beat.tags %}
+
+        <div class="beat-tags-section">
+
+            <span class="tags-heading">
+                TAGS
+            </span>
+
+            <div class="detail-tags">
+
+                {% for tag in beat.tags.split(',') %}
+
+                <span>
+                    {{ tag.strip() }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- =====================================================
+         RELATED BEATS
+    ====================================================== -->
+
+
+    
+        <!-- =====================================================
+             LICENSE ACCESS
+        ====================================================== -->
+
+        
+
+
+{% if related_beats %}
+
+<section class="related-section">
+
+        <div class="related-heading">
+
+            <p>
+                MORE FROM THIS SOUND
+            </p>
+
+            <h2>
+                RELATED BEATS.
+            </h2>
+
+        </div>
+
+
+        <div class="related-grid">
+
+            {% for related in related_beats %}
+
+            <article class="related-card">
+
+                <a
+                    href="/beat/{{ related.id }}"
+                    class="related-cover"
+
+                    {% if related.artwork_file %}
+
+                    <img
+                        src="{{ url_for('static', filename='images/' + related.artwork_file) }}"
+                        alt="{{ related.title }}"
+                        loading="lazy"
+                    >
+
+                    {% else %}
+
+                    <div class="related-placeholder">
+
+                        <span>
+                            WAVE
+                        </span>
+
+                        <strong>
+                            BEATZ
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+                </a>
+
+
+                <div class="related-info">
+
+                    <a
+                        href="/beat/{{ related.id }}"
+                        class="related-title"
+                    >
+                        {{ related.title }}
+                    </a>
+
+                    <p>
+
+                        {{ related.genre|default('INSTRUMENTAL') }}
+
+                        {% if related.bpm %}
+                            • {{ related.bpm }} BPM
+                        {% endif %}
+
+                        {% if related.music_key %}
+                            • {{ related.music_key }}
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- =========================================================
+         SEO-FRIENDLY BEAT INFORMATION
+    ========================================================= -->
+
+    <section class="beat-seo-info">
+
+        <div class="beat-seo-inner">
+
+            <p class="beat-seo-eyebrow">
+                DJ WAVY / WAVE BEATZ
+            </p>
+
+            <h2>
+                {{ beat.title }} — {{ beat.genre }} Beat
+            </h2>
+
+            <p class="beat-seo-description">
+                Listen to {{ beat.title }}, a premium {{ beat.genre }}
+                instrumental produced by DJ WAVY for WAVE BEATZ.
+                Explore the beat, listen online, and choose a license
+                that fits your music project.
+            </p>
+
+            {% set genre_routes = {
+                'TRAP': 'trap',
+                'AFROBEAT': 'afrobeat',
+                'HIP-HOP': 'hip-hop',
+                'DANCEHALL': 'dancehall',
+                'R&B': 'rnb'
+            } %}
+
+            {% set genre_key = beat.genre|upper %}
+
+            {% if genre_key in genre_routes %}
+            <a
+                href="/{{ genre_routes[genre_key] }}"
+                class="beat-genre-link"
+            >
+                EXPLORE MORE {{ beat.genre }} BEATS →
+            </a>
+            {% endif %}
+
+            <div class="beat-seo-details">
+
+                <div class="beat-seo-detail">
+                    <span>GENRE</span>
+                    <strong>{{ beat.genre }}</strong>
+                </div>
+
+                {% if beat.bpm %}
+                <div class="beat-seo-detail">
+                    <span>BPM</span>
+                    <strong>{{ beat.bpm }}</strong>
+                </div>
+                {% endif %}
+
+                {% if beat.mood %}
+                <div class="beat-seo-detail">
+                    <span>MOOD</span>
+                    <strong>{{ beat.mood }}</strong>
+                </div>
+                {% endif %}
+
+                <div class="beat-seo-detail">
+                    <span>PRODUCER</span>
+                    <strong>DJ WAVY</strong>
+                </div>
+
+                <div class="beat-seo-detail">
+                    <span>LABEL</span>
+                    <strong>WAVE BEATZ</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="beat-footer">
+
+    <div class="beat-footer-inner">
+
+        <div class="footer-logo">
+            WAVE <span>BEATZ</span>
+        </div>
+
+        <p>
+            DJ WAVY — PREMIUM INSTRUMENTALS.
+        </p>
+
+        <a href="/">
+            BACK TO CATALOGUE
+        </a>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     AUDIO
+========================================================= -->
+
+<audio
+    id="beatAudio"
+    preload="metadata"
+>
+    <source
+        src="{{ url_for('static', filename=beat.audio_file) }}"
+        type="audio/mpeg"
+    >
+</audio>
+
+
+<!-- =========================================================
+     BEAT PLAYER JAVASCRIPT
+========================================================= -->
+
+<script>
+
+const beatAudio = document.getElementById("beatAudio");
+
+const beatPlayButton =
+    document.getElementById("beatPlayButton");
+
+const beatProgress =
+    document.getElementById("beatProgress");
+
+const beatCurrentTime =
+    document.getElementById("beatCurrentTime");
+
+const beatDuration =
+    document.getElementById("beatDuration");
+
+const beatVolume =
+    document.getElementById("beatVolume");
+
+
+function formatBeatTime(seconds) {
+
+    if (!Number.isFinite(seconds)) {
+        return "0:00";
+    }
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const remainingSeconds =
+        Math.floor(seconds % 60);
+
+    return (
+        minutes +
+        ":" +
+        String(remainingSeconds).padStart(2, "0")
+    );
+}
+
+
+function updateBeatPlayButton() {
+
+    if (beatAudio.paused) {
+
+        beatPlayButton.textContent = "▶";
+
+        beatPlayButton.setAttribute(
+            "aria-label",
+            "Play beat"
+        );
+
+    } else {
+
+        beatPlayButton.textContent = "❚❚";
+
+        beatPlayButton.setAttribute(
+            "aria-label",
+            "Pause beat"
+        );
+
+    }
+}
+
+
+function toggleBeatPlayer() {
+
+    if (beatAudio.paused) {
+
+        beatAudio.play()
+            .then(() => {
+                updateBeatPlayButton();
+            })
+            .catch(error => {
+                console.error(
+                    "Beat playback error:",
+                    error
+                );
+            });
+
+    } else {
+
+        beatAudio.pause();
+
+        updateBeatPlayButton();
+    }
+}
+
+
+beatAudio.addEventListener(
+    "loadedmetadata",
+    function () {
+
+        if (Number.isFinite(beatAudio.duration)) {
+
+            beatProgress.max =
+                beatAudio.duration;
+
+            beatDuration.textContent =
+                formatBeatTime(
+                    beatAudio.duration
+                );
+
+        }
+
+    }
+);
+
+
+beatAudio.addEventListener(
+    "timeupdate",
+    function () {
+
+        if (Number.isFinite(beatAudio.duration)) {
+
+            beatProgress.value =
+                beatAudio.currentTime;
+
+            beatCurrentTime.textContent =
+                formatBeatTime(
+                    beatAudio.currentTime
+                );
+
+        }
+
+    }
+);
+
+
+beatAudio.addEventListener(
+    "play",
+    updateBeatPlayButton
+);
+
+
+beatAudio.addEventListener(
+    "pause",
+    updateBeatPlayButton
+);
+
+
+beatAudio.addEventListener(
+    "ended",
+    function () {
+
+        beatProgress.value = 0;
+
+        beatCurrentTime.textContent =
+            "0:00";
+
+        updateBeatPlayButton();
+
+    }
+);
+
+
+beatProgress.addEventListener(
+    "input",
+    function () {
+
+        beatAudio.currentTime =
+            Number(beatProgress.value);
+
+    }
+);
+
+
+beatVolume.addEventListener(
+    "input",
+    function () {
+
+        beatAudio.volume =
+            Number(beatVolume.value);
+
+    }
+);
+
+
+beatAudio.volume = 1;
+
+updateBeatPlayButton();
+
+
+/* =========================================================
+   STAGE 7 — LICENSE SELECTION
+========================================================= */
+
+</script>
+
+
+<!-- =========================================================
+     STAGE 7 — LICENSE SELECTION MODAL
+========================================================= -->
+
+<div
+    id="licenseModal"
+    class="license-modal"
+    aria-hidden="true"
+>
+
+    <div class="license-modal-overlay" data-close-license></div>
+
+    <div class="license-modal-box">
+
+        <button
+            type="button"
+            class="license-modal-close"
+            data-close-license
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+        <p class="section-label">
+            WAVE BEATZ / DJ WAVY
+        </p>
+
+        <h2>
+            CHOOSE YOUR LICENSE.
+        </h2>
+
+        <p class="license-modal-intro">
+            Select the rights you need for
+            <strong>{{ beat.title }}</strong>.
+        </p>
+
+
+        <div class="license-modal-options">
+
+            <button
+                type="button"
+                class="license-choice"
+                data-open-license="basic"
+            >
+                <span class="choice-number">01</span>
+
+                <span class="choice-content">
+                    <strong>BASIC LEASE</strong>
+                    <small>MP3 / STANDARD LEASE</small>
+                </span>
+
+                <span class="choice-arrow">→</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="license-choice"
+                data-open-license="premium"
+            >
+                <span class="choice-number">02</span>
+
+                <span class="choice-content">
+                    <strong>PREMIUM LEASE</strong>
+                    <small>WAV + MP3 / EXPANDED LEASE</small>
+                </span>
+
+                <span class="choice-arrow">→</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="license-choice"
+                data-open-license="exclusive"
+            >
+                <span class="choice-number">03</span>
+
+                <span class="choice-content">
+                    <strong>EXCLUSIVE</strong>
+                    <small>EXCLUSIVE RIGHTS / CUSTOM AGREEMENT</small>
+                </span>
+
+                <span class="choice-arrow">→</span>
+            </button>
+
+        </div>
+
+
+        <div
+            id="licenseRequest"
+            class="license-request"
+            hidden
+        >
+
+            <p class="section-label">
+                LICENSE SELECTED
+            </p>
+
+            <h3 id="selectedLicense">
+                BASIC LEASE
+            </h3>
+
+            <p>
+                <strong>{{ beat.title }}</strong>
+            </p>
+
+            <div class="license-form">
+
+                <label for="licenseArtistName">
+                    ARTIST NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="licenseArtistName"
+                    placeholder="Your original artist name"
+                    autocomplete="name"
+                </p>
+
+                <p class="license-artist-note">
+                    <strong>IMPORTANT:</strong>
+                    Enter your original artist name exactly as you
+                    want it to appear in the license agreement.
+                    This name will be used on your license documentation.
+                </p>
+
+
+                <label for="licenseBuyerEmail">
+                    EMAIL ADDRESS
+                </label>
+
+                <input
+                    type="email"
+                    id="licenseBuyerEmail"
+                    placeholder="your@email.com"
+                    autocomplete="email"
+                </p>
+
+
+                <label for="licenseBuyerPhone">
+                    WHATSAPP / PHONE
+                </label>
+
+                <input
+                    type="tel"
+                    id="licenseBuyerPhone"
+                    placeholder="+263..."
+                    autocomplete="tel"
+                </p>
+
+
+                <label for="licenseBuyerMessage">
+                    MESSAGE <span>(OPTIONAL)</span>
+                </label>
+
+                <textarea
+                    id="licenseBuyerMessage"
+                    rows="4"
+                    placeholder="Tell DJ WAVY anything about your license request..."
+                ></textarea>
+
+            </div>
+
+
+            <p id="licenseRequestText">
+                Choose WhatsApp or Email to send your license request to DJ WAVY.
+            </p>
+
+
+            <div class="license-request-actions">
+
+                <button
+                    type="button"
+                    id="licenseEcoCashButton"
+                    class="license-button"
+                </p>
+                    💳 PAY WITH ECOCASH — USD 7.89
+                </button>
+
+
+                <div
+                    id="licensePaymentStatus"
+                    class="license-payment-status"
+                    hidden
+                ></div>
+
+
+                <a
+                    href="#"
+                    id="licenseDownloadButton"
+                    class="license-button"
+                    hidden
+                    download
+                </p>
+                    ⬇️ DOWNLOAD LICENSED BEAT
+                </a>
+
+
+                <a
+                    href="#"
+                    id="licenseWhatsAppButton"
+                    class="license-button"
+                    target="_blank"
+                    rel="noopener"
+                </p>
+                    📱 REQUEST VIA WHATSAPP
+                </a>
+
+
+                <a
+                    href="#"
+                    id="licenseEmailButton"
+                    class="license-button"
+                </p>
+                    📧 REQUEST VIA EMAIL
+                </a>
+
+
+                <button
+                    type="button"
+                    class="license-back-button"
+                    id="backToLicenseChoices"
+                </p>
+                    ← CHOOSE ANOTHER
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <p class="license-modal-note">
+            Payment and automatic delivery will be connected
+            in a later stage. No payment is taken from this page yet.
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+/* =========================================================
+   WAVE BEATZ — STAGE 7 ECOCASH LICENSE FLOW
+   DJ WAVY
+========================================================= */
+
+const licenseModal =
+    document.getElementById("licenseModal");
+
+const openLicenseButton =
+    document.getElementById("openLicenseButton");
+
+const licenseRequest =
+    document.getElementById("licenseRequest");
+
+const selectedLicense =
+    document.getElementById("selectedLicense");
+
+const licenseRequestText =
+    document.getElementById("licenseRequestText");
+
+const licenseChoices =
+    licenseModal
+        ? licenseModal.querySelector(".license-modal-options")
+        : null;
+
+const backToLicenseChoices =
+    document.getElementById("backToLicenseChoices");
+
+
+/* =========================================================
+   FORM FIELDS
+========================================================= */
+
+const licenseArtistName =
+    document.getElementById("licenseArtistName");
+
+const licenseBuyerEmail =
+    document.getElementById("licenseBuyerEmail");
+
+const licenseBuyerPhone =
+    document.getElementById("licenseBuyerPhone");
+
+const licenseBuyerMessage =
+    document.getElementById("licenseBuyerMessage");
+
+
+/* =========================================================
+   PAYMENT ELEMENTS
+========================================================= */
+
+const licenseEcoCashButton =
+    document.getElementById("licenseEcoCashButton");
+
+const licensePaymentStatus =
+    document.getElementById("licensePaymentStatus");
+
+const licenseDownloadButton =
+    document.getElementById("licenseDownloadButton");
+
+const licenseWhatsAppButton =
+    document.getElementById("licenseWhatsAppButton");
+
+const licenseEmailButton =
+    document.getElementById("licenseEmailButton");
+
+
+/* =========================================================
+   BEAT INFORMATION
+========================================================= */
+
+const waveBeatzBeatId =
+    Number("{{ beat.id }}");
+
+const waveBeatzBeatTitle =
+    {{ beat.title|tojson }};
+
+
+/* =========================================================
+   LICENSE INFORMATION
+========================================================= */
+
+const waveBeatzLicensePrices = {
+    basic: 7.89,
+    premium: 15.40,
+    exclusive: 24.99
+};
+
+const waveBeatzLicenseNames = {
+    basic: "BASIC LEASE",
+    premium: "PREMIUM LEASE",
+    exclusive: "EXCLUSIVE"
+};
+
+let selectedLicenseType = "basic";
+
+let ecoCashPollingTimer = null;
+
+let ecoCashPollingActive = false;
+
+let waveBeatzLicenseAvailability = {
+    basic: true,
+    premium: true,
+    exclusive: true
+};
+
+
+/* =========================================================
+   LICENSE AVAILABILITY
+========================================================= */
+
+function getLicenseChoiceButton(type) {
+
+    if (!licenseModal) {
+        return null;
+    }
+
+    return licenseModal.querySelector(
+        '[data-open-license="' + type + '"]'
+    );
+
+}
+
+
+function applyLicenseAvailability() {
+
+    const types = [
+        "basic",
+        "premium",
+        "exclusive"
+    ];
+
+    types.forEach(function (type) {
+
+        const button =
+            getLicenseChoiceButton(type);
+
+        if (!button) {
+            return;
+        }
+
+        const available =
+            waveBeatzLicenseAvailability[type] === true;
+
+        button.classList.toggle(
+            "is-sold",
+            !available
+        );
+
+        button.disabled = !available;
+
+        let status =
+            button.querySelector(".choice-status");
+
+        if (!status) {
+
+            status =
+                document.createElement("span");
+
+            status.className =
+                "choice-status";
+
+            const content =
+                button.querySelector(".choice-content");
+
+            if (content) {
+                content.appendChild(status);
+            }
+
+        }
+
+        if (available) {
+
+            status.textContent =
+                "AVAILABLE";
+
+        } else {
+
+            status.textContent =
+                "🔒 SOLD";
+
+        }
+
+    });
+
+}
+
+
+async function loadLicenseAvailability() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ecocash/license-availability/" +
+                encodeURIComponent(
+                    waveBeatzBeatId
+                ),
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+            throw new Error(
+                data.error ||
+                "Unable to check license availability."
+            );
+        }
+
+        waveBeatzLicenseAvailability = {
+            basic:
+                Boolean(
+                    data.basic &&
+                    data.basic.available
+                ),
+
+            premium:
+                Boolean(
+                    data.premium &&
+                    data.premium.available
+                ),
+
+            exclusive:
+                Boolean(
+                    data.exclusive &&
+                    data.exclusive.available
+                )
+        };
+
+        applyLicenseAvailability();
+
+    } catch (error) {
+
+        console.error(
+            "License availability error:",
+            error
+        );
+
+        /*
+         * Do not hide licenses if the availability
+         * check temporarily fails. The backend still
+         * enforces the sale locks.
+         */
+
+        waveBeatzLicenseAvailability = {
+            basic: true,
+            premium: true,
+            exclusive: true
+        };
+
+        applyLicenseAvailability();
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN / CLOSE MODAL
+========================================================= */
+
+function openLicenseModal() {
+
+    if (!licenseModal) {
+        return;
+    }
+
+    licenseModal.classList.add("is-open");
+
+    licenseModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    loadLicenseAvailability();
+
+    document.body.classList.add(
+        "license-modal-open"
+    );
+
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const licenseHash = window.location.hash;
+
+    if (
+        licenseHash === "#license" ||
+        licenseHash === "#license-basic" ||
+        licenseHash === "#license-premium" ||
+        licenseHash === "#license-exclusive"
+    ) {
+
+        setTimeout(function () {
+
+            openLicenseModal();
+
+            if (licenseHash === "#license-basic") {
+                chooseLicense("basic");
+            }
+
+            if (licenseHash === "#license-premium") {
+                chooseLicense("premium");
+            }
+
+            if (licenseHash === "#license-exclusive") {
+                chooseLicense("exclusive");
+            }
+
+        }, 100);
+
+    }
+
+});
+
+
+function closeLicenseModal() {
+
+    if (!licenseModal) {
+        return;
+    }
+
+    licenseModal.classList.remove("is-open");
+
+    licenseModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "license-modal-open"
+    );
+
+}
+
+
+/* =========================================================
+   SELECT LICENSE
+========================================================= */
+
+function chooseLicense(type) {
+
+    if (!waveBeatzLicensePrices[type]) {
+        type = "basic";
+    }
+
+    if (
+        waveBeatzLicenseAvailability[type] !== true
+    ) {
+
+        alert(
+            "This license has already been sold for this beat."
+        );
+
+        return;
+
+    }
+
+    selectedLicenseType = type;
+
+    const licenseName =
+        waveBeatzLicenseNames[type];
+
+    const price =
+        waveBeatzLicensePrices[type];
+
+
+    if (selectedLicense) {
+
+        selectedLicense.textContent =
+            licenseName;
+
+    }
+
+
+    if (licenseRequestText) {
+
+        if (type === "basic") {
+
+            licenseRequestText.textContent =
+                "Pay USD 7.89 with EcoCash to receive the licensed beat download.";
+
+        }
+
+        if (type === "premium") {
+
+            licenseRequestText.textContent =
+                "Pay USD 15.40 with EcoCash to receive the Premium licensed beat download.";
+
+        }
+
+        if (type === "exclusive") {
+
+            licenseRequestText.textContent =
+                "Pay USD 24.99 with EcoCash to receive the Exclusive licensed beat download.";
+
+        }
+
+    }
+
+
+    if (licenseEcoCashButton) {
+
+        licenseEcoCashButton.textContent =
+            "💳 PAY WITH ECOCASH — USD " +
+            price.toFixed(2);
+
+    }
+
+
+    if (licenseChoices) {
+
+        licenseChoices.hidden = true;
+
+    }
+
+
+    if (licenseRequest) {
+
+        licenseRequest.hidden = false;
+
+    }
+
+
+    resetPaymentDisplay();
+
+    updateLicenseContactLinks();
+
+}
+
+
+/* =========================================================
+   RESET PAYMENT DISPLAY
+========================================================= */
+
+function resetPaymentDisplay() {
+
+    if (ecoCashPollingTimer) {
+
+        clearTimeout(ecoCashPollingTimer);
+
+        ecoCashPollingTimer = null;
+
+    }
+
+    ecoCashPollingActive = false;
+
+
+    if (licensePaymentStatus) {
+
+        licensePaymentStatus.hidden = true;
+
+        licensePaymentStatus.textContent = "";
+
+    }
+
+
+    if (licenseDownloadButton) {
+
+        licenseDownloadButton.hidden = true;
+
+        licenseDownloadButton.removeAttribute("href");
+
+    }
+
+
+    if (licenseEcoCashButton) {
+
+        licenseEcoCashButton.disabled = false;
+
+        licenseEcoCashButton.textContent =
+            "💳 PAY WITH ECOCASH — USD " +
+            waveBeatzLicensePrices[selectedLicenseType].toFixed(2);
+
+    }
+
+}
+
+
+/* =========================================================
+   PAYMENT STATUS MESSAGE
+========================================================= */
+
+function showPaymentStatus(message) {
+
+    if (!licensePaymentStatus) {
+        return;
+    }
+
+    licensePaymentStatus.hidden = false;
+
+    licensePaymentStatus.textContent = message;
+
+}
+
+
+/* =========================================================
+   VALIDATE CUSTOMER INFORMATION
+========================================================= */
+
+function validateLicenseForm() {
+
+    const artist =
+        licenseArtistName
+            ? licenseArtistName.value.trim()
+            : "";
+
+    const email =
+        licenseBuyerEmail
+            ? licenseBuyerEmail.value.trim()
+            : "";
+
+    const phone =
+        licenseBuyerPhone
+            ? licenseBuyerPhone.value.trim()
+            : "";
+
+
+    if (!artist) {
+
+        alert("Please enter your artist name.");
+
+        if (licenseArtistName) {
+            licenseArtistName.focus();
+        }
+
+        return false;
+
+    }
+
+
+    if (!email) {
+
+        alert("Please enter your email address.");
+
+        if (licenseBuyerEmail) {
+            licenseBuyerEmail.focus();
+        }
+
+        return false;
+
+    }
+
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+
+        alert("Please enter a valid email address.");
+
+        if (licenseBuyerEmail) {
+            licenseBuyerEmail.focus();
+        }
+
+        return false;
+
+    }
+
+
+    if (!phone) {
+
+        alert("Please enter your EcoCash / phone number.");
+
+        if (licenseBuyerPhone) {
+            licenseBuyerPhone.focus();
+        }
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================================
+   ECOCASH PAYMENT
+========================================================= */
+
+async function startEcoCashPayment() {
+
+    if (ecoCashPollingActive) {
+
+        return;
+
+    }
+
+
+    if (!validateLicenseForm()) {
+
+        return;
+
+    }
+
+
+    const artist =
+        licenseArtistName
+            ? licenseArtistName.value.trim()
+            : "";
+
+    const email =
+        licenseBuyerEmail
+            ? licenseBuyerEmail.value.trim()
+            : "";
+
+    const phone =
+        licenseBuyerPhone
+            ? licenseBuyerPhone.value.trim()
+            : "";
+
+    const message =
+        licenseBuyerMessage
+            ? licenseBuyerMessage.value.trim()
+            : "";
+
+
+    const price =
+        waveBeatzLicensePrices[selectedLicenseType];
+
+
+    if (licenseEcoCashButton) {
+
+        licenseEcoCashButton.disabled = true;
+
+        licenseEcoCashButton.textContent =
+            "⏳ STARTING ECOCASH PAYMENT...";
+
+    }
+
+
+    showPaymentStatus(
+        "Connecting to EcoCash. Please wait..."
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ecocash/create-order",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        beat_id:
+                            waveBeatzBeatId,
+
+                        license_type:
+                            selectedLicenseType,
+
+                        artist_name:
+                            artist,
+
+                        buyer_email:
+                            email,
+
+                        buyer_phone:
+                            phone,
+
+                        buyer_message:
+                            message
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            const errorMessage =
+                data.error ||
+                "EcoCash payment could not be started.";
+
+            throw new Error(errorMessage);
+
+        }
+
+
+        showPaymentStatus(
+            "EcoCash payment request created. " +
+            "Please complete the payment on your EcoCash phone."
+        );
+
+
+        startEcoCashPolling(
+            data.order_id
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "EcoCash payment error:",
+            error
+        );
+
+
+        ecoCashPollingActive = false;
+
+
+        if (licenseEcoCashButton) {
+
+            licenseEcoCashButton.disabled = false;
+
+            licenseEcoCashButton.textContent =
+                "💳 PAY WITH ECOCASH — USD " +
+                price.toFixed(2);
+
+        }
+
+
+        showPaymentStatus(
+            "Payment could not be started: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CHECK ECOCASH ORDER STATUS
+========================================================= */
+
+async function checkEcoCashOrder(orderId) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ecocash/order/" +
+                encodeURIComponent(orderId),
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.error ||
+                "Unable to check payment status."
+            );
+
+        }
+
+
+        const paymentStatus =
+            String(
+                data.payment_status || ""
+            ).toUpperCase();
+
+
+        const ecoCashStatus =
+            String(
+                data.ecocash_status || ""
+            ).toUpperCase();
+
+
+        /* -----------------------------------------
+           PAYMENT SUCCESS
+        ----------------------------------------- */
+
+        if (
+            paymentStatus === "PAID" ||
+            paymentStatus === "COMPLETED" ||
+            ecoCashStatus === "COMPLETED" ||
+            ecoCashStatus === "SUCCESS" ||
+            ecoCashStatus === "CHARGED"
+        ) {
+
+            ecoCashPollingActive = false;
+
+
+            if (ecoCashPollingTimer) {
+
+                clearTimeout(
+                    ecoCashPollingTimer
+                );
+
+                ecoCashPollingTimer = null;
+
+            }
+
+
+            showPaymentStatus(
+                "✅ PAYMENT CONFIRMED! " +
+                "Your licensed beat is ready."
+            );
+
+
+            if (licenseEcoCashButton) {
+
+                licenseEcoCashButton.disabled = true;
+
+                licenseEcoCashButton.textContent =
+                    "✅ PAYMENT CONFIRMED";
+
+            }
+
+
+            if (
+                licenseDownloadButton &&
+                data.download_url
+            ) {
+
+                licenseDownloadButton.href =
+                    data.download_url;
+
+                licenseDownloadButton.hidden =
+                    false;
+
+            }
+
+
+            return true;
+
+        }
+
+
+        /* -----------------------------------------
+           PAYMENT FAILED
+        ----------------------------------------- */
+
+        const failedStatuses = [
+            "FAILED",
+            "FAILURE",
+            "DECLINED",
+            "REJECTED",
+            "CANCELLED",
+            "CANCELED"
+        ];
+
+
+        if (
+            failedStatuses.includes(
+                paymentStatus
+            ) ||
+            failedStatuses.includes(
+                ecoCashStatus
+            )
+        ) {
+
+            ecoCashPollingActive = false;
+
+
+            if (licenseEcoCashButton) {
+
+                licenseEcoCashButton.disabled =
+                    false;
+
+                licenseEcoCashButton.textContent =
+                    "💳 PAY WITH ECOCASH — USD " +
+                    waveBeatzLicensePrices[
+                        selectedLicenseType
+                    ].toFixed(2);
+
+            }
+
+
+            showPaymentStatus(
+                "❌ EcoCash payment was not completed. " +
+                "You can try again."
+            );
+
+
+            return true;
+
+        }
+
+
+        /* -----------------------------------------
+           STILL WAITING
+        ----------------------------------------- */
+
+        showPaymentStatus(
+            "⏳ Waiting for EcoCash confirmation... " +
+            "Please complete the payment on your phone."
+        );
+
+
+        return false;
+
+
+    } catch (error) {
+
+        console.error(
+            "EcoCash status error:",
+            error
+        );
+
+
+        showPaymentStatus(
+            "Checking EcoCash payment status..."
+        );
+
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
+   POLL PAYMENT STATUS
+========================================================= */
+
+function startEcoCashPolling(orderId) {
+
+    ecoCashPollingActive = true;
+
+
+    let attempts = 0;
+
+    const maxAttempts = 75;
+
+
+    async function poll() {
+
+        if (!ecoCashPollingActive) {
+
+            return;
+
+        }
+
+
+        attempts++;
+
+
+        const finished =
+            await checkEcoCashOrder(
+                orderId
+            );
+
+
+        if (finished) {
+
+            return;
+
+        }
+
+
+        if (attempts >= maxAttempts) {
+
+            ecoCashPollingActive = false;
+
+
+            if (licenseEcoCashButton) {
+
+                licenseEcoCashButton.disabled =
+                    false;
+
+                licenseEcoCashButton.textContent =
+                    "💳 CHECK PAYMENT AGAIN — USD " +
+                    waveBeatzLicensePrices[
+                        selectedLicenseType
+                    ].toFixed(2);
+
+            }
+
+
+            showPaymentStatus(
+                "We are still waiting for EcoCash confirmation. " +
+                "If you completed payment, wait a moment and try again."
+            );
+
+
+            return;
+
+        }
+
+
+        ecoCashPollingTimer =
+            setTimeout(
+                poll,
+                4000
+            );
+
+    }
+
+
+    poll();
+
+}
+
+
+/* =========================================================
+   WHATSAPP + EMAIL
+========================================================= */
+
+function updateLicenseContactLinks() {
+
+    const artist =
+        licenseArtistName
+            ? licenseArtistName.value.trim()
+            : "";
+
+    const email =
+        licenseBuyerEmail
+            ? licenseBuyerEmail.value.trim()
+            : "";
+
+    const phone =
+        licenseBuyerPhone
+            ? licenseBuyerPhone.value.trim()
+            : "";
+
+    const message =
+        licenseBuyerMessage
+            ? licenseBuyerMessage.value.trim()
+            : "";
+
+
+    const selectedName =
+        waveBeatzLicenseNames[
+            selectedLicenseType
+        ];
+
+
+    const price =
+        waveBeatzLicensePrices[
+            selectedLicenseType
+        ];
+
+
+    const requestMessage =
+        "WAVE BEATZ LICENSE REQUEST\n\n" +
+        "Beat: " +
+        waveBeatzBeatTitle +
+        "\n" +
+
+        "License: " +
+        selectedName +
+        "\n" +
+
+        "Price: USD " +
+        price.toFixed(2) +
+        "\n" +
+
+        "Artist: " +
+        (artist || "Not provided") +
+        "\n" +
+
+        "Email: " +
+        (email || "Not provided") +
+        "\n" +
+
+        "Phone/WhatsApp: " +
+        (phone || "Not provided") +
+        "\n" +
+
+        "Message: " +
+        (message || "None") +
+        "\n\n" +
+
+        "Sent from WAVE BEATZ — DJ WAVY";
+
+
+    const encodedMessage =
+        encodeURIComponent(
+            requestMessage
+        );
+
+
+    if (licenseWhatsAppButton) {
+
+        licenseWhatsAppButton.href =
+            "https://wa.me/263783747828?text=" +
+            encodedMessage;
+
+    }
+
+
+    if (licenseEmailButton) {
+
+        const subject =
+            encodeURIComponent(
+                "WAVE BEATZ License Request — " +
+                waveBeatzBeatTitle +
+                " — " +
+                selectedName
+            );
+
+
+        licenseEmailButton.href =
+            "mailto:wavebeatzimbabwe@gmail.com" +
+            "?subject=" +
+            subject +
+            "&body=" +
+            encodedMessage;
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN LICENSE MODAL
+========================================================= */
+
+if (openLicenseButton) {
+
+    openLicenseButton.addEventListener(
+        "click",
+        function () {
+
+            openLicenseModal();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LICENSE CHOICE BUTTONS
+========================================================= */
+
+if (licenseModal) {
+
+    licenseModal
+        .querySelectorAll(
+            "[data-open-license]"
+        )
+        .forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const type =
+                            button.getAttribute(
+                                "data-open-license"
+                            );
+
+                        if (
+                            waveBeatzLicenseAvailability[type] !== true
+                        ) {
+
+                            showPaymentStatus(
+                                "🔒 This license has already been sold for this beat."
+                            );
+
+                            return;
+                        }
+
+                        openLicenseModal();
+
+                        chooseLicense(
+                            type
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    licenseModal
+        .querySelectorAll(
+            "[data-close-license]"
+        )
+        .forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        closeLicenseModal();
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   BACK TO LICENSE CHOICES
+========================================================= */
+
+if (backToLicenseChoices) {
+
+    backToLicenseChoices.addEventListener(
+        "click",
+        function () {
+
+            resetPaymentDisplay();
+
+
+            if (licenseRequest) {
+
+                licenseRequest.hidden =
+                    true;
+
+            }
+
+
+            if (licenseChoices) {
+
+                licenseChoices.hidden =
+                    false;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ECOCASH BUTTON
+========================================================= */
+
+if (licenseEcoCashButton) {
+
+    licenseEcoCashButton.addEventListener(
+        "click",
+        startEcoCashPayment
+    );
+
+}
+
+
+/* =========================================================
+   FORM INPUT LISTENERS
+========================================================= */
+
+[
+    licenseArtistName,
+    licenseBuyerEmail,
+    licenseBuyerPhone,
+    licenseBuyerMessage
+]
+.forEach(
+    function (input) {
+
+        if (input) {
+
+            input.addEventListener(
+                "input",
+                updateLicenseContactLinks
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE WITH ESCAPE
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+
+            closeLicenseModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIAL SETUP
+========================================================= */
+
+updateLicenseContactLinks();
+
+</script>
+
+
+
+</body>
+</html>

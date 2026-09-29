@@ -1,0 +1,2760 @@
+:root {
+    --bg: #080808;
+    --bg-soft: #101010;
+    --panel: #121212;
+    --panel-light: #181818;
+    --gold: #d0a653;
+    --gold-light: #e0bd70;
+    --text: #f5f5f5;
+    --muted: #9a9a9a;
+    --border: rgba(255, 255, 255, 0.08);
+    --shadow: rgba(0, 0, 0, 0.45);
+}
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background:
+        radial-gradient(
+            circle at 75% 15%,
+            rgba(208, 166, 83, 0.08),
+            transparent 28%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    min-height: 100vh;
+
+    line-height: 1.5;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button,
+input {
+    font: inherit;
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+.beat-nav {
+    width: 100%;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(8, 8, 8, 0.92);
+
+    backdrop-filter:
+        blur(14px);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.nav-inner {
+    width: min(
+        1180px,
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.brand {
+    display: inline-flex;
+
+    align-items: baseline;
+
+    gap: 5px;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    font-size: 22px;
+}
+
+
+.brand-main {
+    color: var(--text);
+}
+
+
+.brand-accent {
+    color: var(--gold);
+}
+
+
+.back-link {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.back-link:hover {
+    color: var(--gold);
+
+    transform:
+        translateX(-3px);
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.beat-hero {
+    position: relative;
+
+    overflow: hidden;
+
+    padding:
+        80px
+        0
+        100px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.beat-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+
+    height: 520px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(208, 166, 83, 0.055);
+
+    filter: blur(70px);
+
+    right: -160px;
+
+    top: 30px;
+
+    pointer-events: none;
+}
+
+
+.beat-container {
+    width: min(
+        1180px,
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(320px, 480px)
+        1fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* ==========================================
+   ARTWORK
+========================================== */
+
+.artwork-column {
+    display: flex;
+
+    justify-content: center;
+}
+
+
+.artwork-wrap {
+    width: min(
+        100%,
+        480px
+    );
+
+    aspect-ratio: 1 / 1;
+
+    position: relative;
+}
+
+
+.beat-artwork,
+.artwork-placeholder {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+
+    position: relative;
+
+    z-index: 2;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    box-shadow:
+        0 30px 80px
+        var(--shadow);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+
+.artwork-wrap:hover
+.beat-artwork {
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 40px 90px
+        rgba(0, 0, 0, 0.65);
+}
+
+
+.artwork-placeholder {
+    background:
+        linear-gradient(
+            145deg,
+            #202020,
+            #090909
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+.artwork-placeholder span {
+    font-size: 28px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+}
+
+
+.artwork-placeholder strong {
+    color: var(--gold);
+
+    font-size: 42px;
+
+    letter-spacing: 3px;
+}
+
+
+.artwork-glow {
+    position: absolute;
+
+    inset: 20px;
+
+    background:
+        rgba(208, 166, 83, 0.18);
+
+    filter: blur(45px);
+
+    z-index: 1;
+
+    opacity: 0.55;
+}
+
+
+/* ==========================================
+   INFORMATION
+========================================== */
+
+.info-column {
+    max-width: 620px;
+}
+
+
+.eyebrow,
+.section-label {
+    color: var(--gold);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 2.5px;
+
+    margin-bottom: 14px;
+}
+
+
+.info-column h1 {
+    font-size:
+        clamp(
+            42px,
+            6vw,
+            76px
+        );
+
+    line-height: 0.98;
+
+    letter-spacing: -3px;
+
+    font-weight: 900;
+
+    margin-bottom: 18px;
+
+    word-break: break-word;
+}
+
+
+.beat-subtitle {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 38px;
+}
+
+
+/* ==========================================
+   META
+========================================== */
+
+.beat-meta {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    border-top:
+        1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
+    margin-bottom: 30px;
+}
+
+
+.meta-item {
+    padding:
+        18px
+        18px
+        18px
+        0;
+
+    border-right:
+        1px solid var(--border);
+}
+
+
+.meta-item:not(:first-child) {
+    padding-left: 18px;
+}
+
+
+.meta-item:last-child {
+    border-right: none;
+}
+
+
+.meta-label {
+    display: block;
+
+    color: #707070;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 6px;
+}
+
+
+.meta-value {
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   PLAYER
+========================================== */
+
+.beat-player {
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0e0e0e
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+.main-play {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 5px;
+
+    padding: 17px 20px;
+
+    background: var(--gold);
+
+    color: #090909;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.main-play:hover {
+    background:
+        var(--gold-light);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(208, 166, 83, 0.18);
+}
+
+
+.main-play.playing {
+    background:
+        #e6e6e6;
+}
+
+
+.progress-area {
+    display: grid;
+
+    grid-template-columns:
+        42px 1fr 42px;
+
+    gap: 12px;
+
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+
+.progress-area span {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-variant-numeric:
+        tabular-nums;
+}
+
+
+.progress-area span:last-child {
+    text-align: right;
+}
+
+
+.progress-track {
+    width: 100%;
+
+    height: 4px;
+
+    background:
+        #292929;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+
+.progress-fill {
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        var(--gold);
+
+    border-radius: 20px;
+
+    transition:
+        width 0.08s linear;
+}
+
+
+.volume-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+
+.volume-row span {
+    color: #707070;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.volume-row input {
+    flex: 1;
+
+    accent-color:
+        var(--gold);
+}
+
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.actions {
+    margin-top: 16px;
+}
+
+
+.download-button {
+    width: 100%;
+
+    border:
+        1px solid
+        rgba(208, 166, 83, 0.45);
+
+    background:
+        transparent;
+
+    color: var(--gold);
+
+    border-radius: 5px;
+
+    padding: 15px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.4px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.download-button span {
+    font-size: 18px;
+
+    line-height: 1;
+}
+
+
+.download-button:hover {
+    background:
+        var(--gold);
+
+    color: #090909;
+
+    border-color:
+        var(--gold);
+}
+
+
+.beat-note {
+    color: #6f6f6f;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    margin-top: 18px;
+}
+
+
+/* ==========================================
+   DETAILS
+========================================== */
+
+.details-section,
+.related-section {
+    padding:
+        90px
+        0;
+}
+
+
+.details-section {
+    background:
+        #0b0b0b;
+}
+
+
+.section-inner {
+    width: min(
+        1180px,
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+}
+
+
+.section-inner h2 {
+    font-size:
+        clamp(
+            30px,
+            5vw,
+            52px
+        );
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 40px;
+}
+
+
+.details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+
+.detail-card {
+    background:
+        var(--panel);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 6px;
+
+    padding: 24px;
+
+    min-height: 120px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.detail-card:hover {
+    border-color:
+        rgba(208, 166, 83, 0.4);
+
+    transform:
+        translateY(-3px);
+}
+
+
+.detail-card span {
+    color: #6e6e6e;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.detail-card strong {
+    font-size: 15px;
+
+    color: var(--text);
+
+    word-break: break-word;
+}
+
+
+/* ==========================================
+   RELATED
+========================================== */
+
+.section-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    gap: 20px;
+
+    margin-bottom: 38px;
+}
+
+
+.section-top h2 {
+    margin-bottom: 0;
+}
+
+
+.view-all {
+    color: var(--gold);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    padding-bottom: 6px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.view-all:hover {
+    transform:
+        translateX(4px);
+}
+
+
+.related-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.related-card {
+    background:
+        var(--panel);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 7px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.related-card:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(208, 166, 83, 0.45);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.3);
+}
+
+
+.related-art {
+    aspect-ratio: 16 / 10;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        #171717;
+}
+
+
+.related-art img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.related-card:hover
+.related-art img {
+    transform:
+        scale(1.05);
+}
+
+
+.related-placeholder {
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    color: var(--gold);
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d1d1d,
+            #090909
+        );
+}
+
+
+.related-play {
+    position: absolute;
+
+    right: 14px;
+
+    bottom: 14px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    background:
+        var(--gold);
+
+    color: #090909;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.4);
+}
+
+
+.related-info {
+    padding: 18px;
+}
+
+
+.related-info strong {
+    display: block;
+
+    font-size: 15px;
+
+    margin-bottom: 6px;
+
+    word-break: break-word;
+}
+
+
+.related-info span {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.beat-footer {
+    border-top:
+        1px solid var(--border);
+
+    background:
+        #070707;
+
+    padding:
+        30px
+        0;
+}
+
+
+.footer-inner {
+    width: min(
+        1180px,
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.footer-inner div {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 8px;
+}
+
+
+.footer-inner strong {
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+.footer-inner span,
+.footer-inner p {
+    color: #666;
+
+    font-size: 10px;
+}
+
+
+.footer-inner p {
+    margin: 0;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .beat-container {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+
+        max-width: 650px;
+    }
+
+
+    .artwork-column {
+        justify-content: flex-start;
+    }
+
+
+    .artwork-wrap {
+        width: min(
+            100%,
+            500px
+        );
+    }
+
+
+    .info-column {
+        max-width: none;
+    }
+
+
+    .details-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .related-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .nav-inner,
+    .beat-container,
+    .section-inner,
+    .footer-inner {
+        width:
+            calc(100% - 28px);
+    }
+
+
+    .nav-inner {
+        min-height: 66px;
+    }
+
+
+    .brand {
+        font-size: 19px;
+    }
+
+
+    .back-link {
+        font-size: 9px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .beat-hero {
+        padding:
+            45px
+            0
+            65px;
+    }
+
+
+    .beat-container {
+        gap: 38px;
+    }
+
+
+    .info-column h1 {
+        font-size:
+            clamp(
+                38px,
+                12vw,
+                58px
+            );
+
+        letter-spacing: -2px;
+    }
+
+
+    .beat-subtitle {
+        margin-bottom: 25px;
+    }
+
+
+    .beat-meta {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    .meta-item {
+        padding:
+            14px
+            8px
+            14px
+            0;
+    }
+
+
+    .meta-item:not(:first-child) {
+        padding-left: 8px;
+    }
+
+
+    .meta-value {
+        font-size: 12px;
+    }
+
+
+    .details-section,
+    .related-section {
+        padding:
+            65px
+            0;
+    }
+
+
+    .section-inner h2 {
+        margin-bottom: 28px;
+    }
+
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .section-top {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .footer-inner {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .back-link {
+        font-size: 8px;
+    }
+
+
+    .brand {
+        font-size: 17px;
+    }
+
+
+    .progress-area {
+        grid-template-columns:
+            35px 1fr 35px;
+
+        gap: 7px;
+    }
+
+
+    .main-play {
+        padding: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   WAVE BEATZ — STAGE 7 LICENSING
+========================================================= */
+
+.licensing-section {
+    position: relative;
+    padding: 100px 0;
+    background:
+        linear-gradient(
+            180deg,
+            #080808 0%,
+            #0b0b0b 50%,
+            #080808 100%
+        );
+    overflow: hidden;
+}
+
+.licensing-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(208, 166, 83, 0.5),
+            transparent
+        );
+}
+
+.licensing-heading {
+    margin-bottom: 42px;
+}
+
+.licensing-heading h2 {
+    margin-top: 8px;
+}
+
+.licensing-intro {
+    max-width: 560px;
+    margin-top: 14px;
+
+    color: #777;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+.license-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    align-items: stretch;
+}
+
+
+.license-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 500px;
+
+    padding: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111111,
+            #0b0b0b
+        );
+
+    border: 1px solid #242424;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.license-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -100px;
+    top: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(208, 166, 83, 0.12),
+            transparent 70%
+        );
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.license-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(208, 166, 83, 0.45);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(208, 166, 83, 0.04);
+}
+
+
+.license-card:hover::after {
+    transform: scale(1.5);
+}
+
+
+.license-card-featured {
+    border-color:
+        rgba(208, 166, 83, 0.5);
+
+    background:
+        linear-gradient(
+            145deg,
+            #17130c,
+            #0b0b0b 70%
+        );
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+.license-featured-label {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    padding: 8px;
+
+    text-align: center;
+
+    background: #d0a653;
+    color: #080808;
+
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+
+.license-card-featured .license-card-top {
+    margin-top: 22px;
+}
+
+
+.license-card-top {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 26px;
+}
+
+
+.license-number {
+    color: #444;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+
+.license-status {
+    color: #d0a653;
+
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+
+.license-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    border: 1px solid #333;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1b1b1b,
+            #0c0c0c
+        );
+
+    color: #d0a653;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.license-card:hover .license-icon {
+    transform: rotate(-3deg) scale(1.05);
+
+    border-color: #d0a653;
+
+    box-shadow:
+        0 0 20px rgba(208, 166, 83, 0.12);
+}
+
+
+.license-card h3 {
+    margin-bottom: 12px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+
+.license-description {
+    min-height: 66px;
+
+    color: #777;
+
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+
+.license-features {
+    list-style: none;
+
+    margin: 25px 0;
+
+    padding: 18px 0;
+
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+
+.license-features li {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 7px 0;
+
+    color: #999;
+
+    font-size: 10px;
+}
+
+
+.license-features li span {
+    color: #d0a653;
+
+    font-weight: 900;
+}
+
+
+.license-price {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: auto;
+
+    padding-bottom: 20px;
+}
+
+
+.license-price span {
+    color: #555;
+
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+
+.license-price strong {
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 900;
+}
+
+
+.license-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding: 12px 16px;
+
+    border: 1px solid #d0a653;
+
+    background: #d0a653;
+
+    color: #080808;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+
+    text-align: center;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.license-button:hover {
+    transform: translateY(-2px);
+
+    background: #e1bd6a;
+
+    box-shadow:
+        0 10px 25px rgba(208, 166, 83, 0.16);
+}
+
+
+.license-button-outline {
+    background: transparent;
+    color: #d0a653;
+}
+
+
+.license-button-outline:hover {
+    background: #d0a653;
+    color: #080808;
+}
+
+
+.license-note {
+    margin-top: 28px;
+
+    padding: 18px 20px;
+
+    border-left: 2px solid #d0a653;
+
+    background: rgba(208, 166, 83, 0.035);
+}
+
+
+.license-note strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #d0a653;
+
+    font-size: 8px;
+    letter-spacing: 1.5px;
+}
+
+
+.license-note p {
+    color: #666;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   MOBILE LICENSING
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .license-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .license-card {
+        min-height: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .licensing-section {
+        padding: 70px 0;
+    }
+
+    .licensing-heading {
+        margin-bottom: 30px;
+    }
+
+    .license-card {
+        padding: 22px;
+    }
+
+    .license-card h3 {
+        font-size: 18px;
+    }
+
+    .license-description {
+        min-height: auto;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .license-card,
+    .license-icon,
+    .license-button {
+        transition: none;
+    }
+
+}
+
+
+
+/* ==========================================
+   STAGE 7.1 — LICENSING VISIBILITY FIX
+========================================== */
+
+.licensing-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 300px !important;
+    overflow: visible !important;
+}
+
+.license-grid {
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.license-card {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* =========================================================
+   STAGE 7.2 - LICENSE MODAL
+========================================================= */
+
+body.license-modal-open {
+    overflow: hidden;
+}
+
+.license-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.license-modal.is-open {
+    display: flex;
+}
+
+.license-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(8px);
+}
+
+.license-modal-box {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 620px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px;
+    box-sizing: border-box;
+    background: #101010;
+    border: 1px solid #2b2b2b;
+    border-radius: 16px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7);
+}
+
+.license-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    background: #181818;
+    color: #ffffff;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.license-modal-close:hover {
+    background: #242424;
+}
+
+.license-modal-box h2 {
+    margin: 8px 45px 10px 0;
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.license-modal-intro {
+    margin: 0 0 24px;
+    color: #a9a9a9;
+    line-height: 1.6;
+}
+
+.license-modal-intro strong {
+    color: #ffffff;
+}
+
+.license-modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.license-choice {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    box-sizing: border-box;
+    border: 1px solid #2b2b2b;
+    border-radius: 12px;
+    background: #161616;
+    color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.license-choice:hover {
+    transform: translateY(-2px);
+    border-color: #666;
+    background: #1c1c1c;
+}
+
+.choice-number {
+    flex: 0 0 42px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #888888;
+}
+
+.choice-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.choice-content strong {
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.choice-content small {
+    color: #888888;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.choice-arrow {
+    font-size: 22px;
+    color: #999999;
+}
+
+.license-request {
+    padding: 22px;
+    border: 1px solid #2b2b2b;
+    border-radius: 12px;
+    background: #161616;
+}
+
+.license-request h3 {
+    margin: 6px 0 12px;
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.license-request p {
+    color: #a9a9a9;
+    line-height: 1.6;
+}
+
+.license-request p strong {
+    color: #ffffff;
+}
+
+.license-request-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.license-request .license-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+}
+
+.license-back-button {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    background: transparent;
+    color: #aaaaaa;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.license-back-button:hover {
+    color: #ffffff;
+    border-color: #666666;
+}
+
+.license-modal-note {
+    margin: 22px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid #242424;
+    color: #777777;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.license-modal [hidden] {
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    .license-modal {
+        padding: 12px;
+    }
+
+    .license-modal-box {
+        max-height: 94vh;
+        padding: 24px 18px;
+        border-radius: 14px;
+    }
+
+    .license-modal-box h2 {
+        font-size: 23px;
+    }
+
+    .license-choice {
+        padding: 15px;
+    }
+
+    .choice-number {
+        flex-basis: 30px;
+    }
+
+}
+/* =========================================================
+   STAGE 7.3 — LICENSE REQUEST FORM
+========================================================= */
+
+.license-form {
+    display: grid;
+    gap: 8px;
+    margin: 24px 0;
+}
+
+.license-form label {
+    margin-top: 10px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.license-form label span {
+    color: #777777;
+    font-weight: 400;
+}
+
+.license-form input,
+.license-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    outline: none;
+    background: #181818;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.license-form input:focus,
+.license-form textarea:focus {
+    border-color: #777777;
+}
+
+.license-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.license-request-actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.license-request-actions .license-button,
+.license-request-actions .license-back-button {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.license-back-button {
+    padding: 13px 18px;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    background: #181818;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.license-back-button:hover {
+    background: #242424;
+}
+
+
+
+/* ==========================================
+   STAGE 7 — LICENSE SOLD STATES
+========================================== */
+
+.license-choice.is-sold {
+    opacity: 0.55;
+    cursor: not-allowed;
+    border-color: #333;
+}
+
+.license-choice.is-sold .choice-arrow {
+    display: none;
+}
+
+.license-choice.is-sold .choice-content strong {
+    text-decoration: line-through;
+}
+
+.license-choice .choice-status {
+    display: block;
+    margin-top: 5px;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: #d0a653;
+}
+
+.license-choice.is-sold .choice-status {
+    color: #777;
+}
+
+.license-artist-note {
+    margin: -8px 0 18px;
+    padding: 12px 14px;
+    border-left: 2px solid #d0a653;
+    background: #111;
+    color: #aaa;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.license-artist-note strong {
+    color: #d0a653;
+}
+
+
+/* =========================================================
+   WAVE BEATZ — VISIBLE SEO BEAT INFORMATION
+========================================================= */
+
+.beat-seo-info {
+    width: 100%;
+    margin-top: 55px;
+    padding: 0 20px 70px;
+    box-sizing: border-box;
+}
+
+.beat-seo-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.025);
+}
+
+.beat-seo-eyebrow {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.55;
+}
+
+.beat-seo-inner h2 {
+    margin: 0 0 14px;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.beat-seo-description {
+    max-width: 850px;
+    margin: 0;
+    line-height: 1.7;
+    opacity: 0.72;
+}
+
+.beat-seo-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.beat-seo-detail {
+    min-width: 130px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.035);
+}
+
+.beat-seo-detail span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    opacity: 0.45;
+}
+
+.beat-seo-detail strong {
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+
+    .beat-seo-info {
+        margin-top: 35px;
+        padding: 0 14px 50px;
+    }
+
+    .beat-seo-inner {
+        padding: 24px 18px;
+        border-radius: 14px;
+    }
+
+    .beat-seo-inner h2 {
+        font-size: 22px;
+    }
+
+    .beat-seo-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .beat-seo-detail {
+        min-width: 0;
+    }
+}
+
+
+/* =========================================================
+   WAVE BEATZ — BREADCRUMB NAVIGATION
+========================================================= */
+
+.beat-breadcrumbs {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px 20px 0;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    font-size: 11px;
+    letter-spacing: 0.8px;
+}
+
+.beat-breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.2s ease;
+}
+
+.beat-breadcrumbs a:hover {
+    opacity: 1;
+}
+
+.beat-breadcrumbs span {
+    opacity: 0.35;
+}
+
+.beat-breadcrumbs span[aria-current="page"] {
+    opacity: 0.7;
+}
+
+@media (max-width: 700px) {
+
+    .beat-breadcrumbs {
+        padding: 18px 14px 0;
+        font-size: 10px;
+    }
+
+}
+
+/* =========================================================
+   WAVE BEATZ — COMPACT PREMIUM BEAT PAGE
+   DJ WAVY
+========================================================= */
+
+/* Tighter overall hero */
+.beat-hero {
+    padding: 38px 0 55px !important;
+}
+
+/* Compact breadcrumb */
+.beat-breadcrumbs {
+    padding-top: 14px !important;
+    padding-bottom: 4px !important;
+}
+
+/* Smaller, tighter main layout */
+.beat-container {
+    max-width: 1080px !important;
+    gap: 46px !important;
+    align-items: center !important;
+}
+
+/* Smaller artwork */
+.beat-artwork,
+.beat-artwork img {
+    max-width: 350px !important;
+}
+
+.beat-artwork {
+    margin: 0 auto !important;
+}
+
+/* Premium subtle artwork animation */
+.beat-artwork img {
+    transition:
+        transform 0.45s ease,
+        box-shadow 0.45s ease,
+        filter 0.45s ease !important;
+}
+
+.beat-artwork:hover img {
+    transform: translateY(-5px) scale(1.015);
+}
+
+/* Compact beat title */
+.beat-info h1 {
+    font-size: clamp(42px, 5vw, 60px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -2.5px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Tighter subtitle */
+.beat-subtitle {
+    margin-bottom: 22px !important;
+    line-height: 1.45 !important;
+}
+
+/* Compact metadata */
+.beat-meta {
+    gap: 8px !important;
+    margin-bottom: 20px !important;
+}
+
+.meta-item {
+    padding: 10px 12px !important;
+}
+
+/* Compact player */
+.beat-player {
+    margin-top: 18px !important;
+    padding: 14px !important;
+}
+
+/* Main CTA */
+.beat-actions {
+    margin-top: 18px !important;
+}
+
+.download-beat-button {
+    min-height: 50px !important;
+    padding: 13px 22px !important;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease !important;
+}
+
+.download-beat-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Compact note */
+.beat-note {
+    margin-top: 10px !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+}
+
+/* Tighter details section */
+.beat-details {
+    padding-top: 55px !important;
+    padding-bottom: 55px !important;
+}
+
+.details-heading {
+    margin-bottom: 22px !important;
+}
+
+/* Compact related section */
+.related-section {
+    padding-top: 55px !important;
+    padding-bottom: 55px !important;
+}
+
+.related-heading {
+    margin-bottom: 20px !important;
+}
+
+.related-grid {
+    gap: 16px !important;
+}
+
+.related-card {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease !important;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Compact SEO block */
+.beat-seo-info {
+    margin-top: 25px !important;
+    padding-bottom: 40px !important;
+}
+
+.beat-seo-inner {
+    padding: 24px !important;
+}
+
+.beat-seo-inner h2 {
+    font-size: 24px !important;
+}
+
+.beat-seo-description {
+    line-height: 1.55 !important;
+}
+
+.beat-seo-details {
+    margin-top: 18px !important;
+    gap: 8px !important;
+}
+
+.beat-seo-detail {
+    padding: 11px 13px !important;
+}
+
+/* Premium back button */
+.beat-nav .back-link,
+.beat-nav a {
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease !important;
+}
+
+.beat-nav .back-link:hover,
+.beat-nav a:hover {
+    transform: translateX(-3px);
+}
+
+/* Smooth section entrance */
+.beat-hero,
+.beat-details,
+.related-section,
+.beat-seo-info {
+    animation: waveBeatzFadeUp 0.65s ease both;
+}
+
+@keyframes waveBeatzFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile compact layout */
+@media (max-width: 900px) {
+
+    .beat-hero {
+        padding: 28px 0 42px !important;
+    }
+
+    .beat-container {
+        gap: 30px !important;
+    }
+
+    .beat-artwork,
+    .beat-artwork img {
+        max-width: 300px !important;
+    }
+
+    .beat-info h1 {
+        font-size: clamp(36px, 10vw, 52px) !important;
+    }
+
+    .beat-details,
+    .related-section {
+        padding-top: 42px !important;
+        padding-bottom: 42px !important;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .beat-hero {
+        padding: 22px 0 35px !important;
+    }
+
+    .beat-breadcrumbs {
+        padding: 12px 14px 3px !important;
+    }
+
+    .beat-container {
+        gap: 22px !important;
+    }
+
+    .beat-artwork,
+    .beat-artwork img {
+        max-width: 250px !important;
+    }
+
+    .beat-info h1 {
+        font-size: clamp(32px, 11vw, 46px) !important;
+        letter-spacing: -1.5px !important;
+    }
+
+    .beat-subtitle {
+        margin-bottom: 16px !important;
+    }
+
+    .beat-meta {
+        margin-bottom: 14px !important;
+    }
+
+    .beat-player {
+        margin-top: 12px !important;
+        padding: 11px !important;
+    }
+
+    .beat-actions {
+        margin-top: 13px !important;
+    }
+
+    .download-beat-button {
+        width: 100% !important;
+    }
+
+    .beat-details,
+    .related-section {
+        padding-top: 35px !important;
+        padding-bottom: 35px !important;
+    }
+
+    .beat-seo-info {
+        margin-top: 18px !important;
+        padding: 0 14px 30px !important;
+    }
+
+    .beat-seo-inner {
+        padding: 20px 16px !important;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    .beat-hero,
+    .beat-details,
+    .related-section,
+    .beat-seo-info {
+        animation: none !important;
+    }
+
+    .beat-artwork img,
+    .related-card,
+    .download-beat-button {
+        transition: none !important;
+    }
+}
+
+
+
+/* =====================================================
+   WAVE BEATZ — FINAL COMPACT BEAT HERO
+===================================================== */
+
+.beat-hero {
+    padding: 24px 0 38px !important;
+}
+
+.beat-container {
+    max-width: 920px !important;
+    grid-template-columns: 250px minmax(0, 1fr) !important;
+    gap: 34px !important;
+    align-items: center !important;
+}
+
+.beat-artwork,
+.beat-artwork img {
+    max-width: 250px !important;
+    width: 100% !important;
+}
+
+.beat-artwork {
+    margin: 0 auto !important;
+}
+
+.beat-information {
+    min-width: 0 !important;
+}
+
+.beat-eyebrow {
+    margin-bottom: 7px !important;
+    font-size: 9px !important;
+    letter-spacing: 1.7px !important;
+}
+
+.beat-information h1 {
+    margin-bottom: 8px !important;
+    font-size: clamp(34px, 5vw, 52px) !important;
+    line-height: .95 !important;
+    letter-spacing: -2px !important;
+}
+
+.beat-subtitle {
+    margin-bottom: 13px !important;
+    font-size: 10px !important;
+    letter-spacing: 1px !important;
+}
+
+.beat-meta {
+    gap: 6px !important;
+    margin-bottom: 13px !important;
+}
+
+.meta-item {
+    padding: 7px 9px !important;
+}
+
+.meta-label {
+    font-size: 8px !important;
+}
+
+.meta-item strong {
+    font-size: 11px !important;
+}
+
+.beat-player {
+    margin-top: 10px !important;
+    padding: 10px !important;
+}
+
+.beat-play-button {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+}
+
+.beat-player-times {
+    font-size: 9px !important;
+}
+
+.beat-volume {
+    gap: 6px !important;
+}
+
+.beat-actions {
+    margin-top: 11px !important;
+}
+
+.download-beat-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    padding: 10px 14px !important;
+    text-decoration: none !important;
+    font-size: 10px !important;
+    letter-spacing: 1px !important;
+}
+
+.download-beat-button span {
+    font-size: 16px;
+}
+
+.beat-note {
+    margin-top: 7px !important;
+    font-size: 9px !important;
+    line-height: 1.4 !important;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .beat-hero {
+        padding: 18px 0 28px !important;
+    }
+
+    .beat-container {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+        max-width: 500px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .beat-artwork,
+    .beat-artwork img {
+        max-width: 190px !important;
+    }
+
+    .beat-information h1 {
+        font-size: clamp(31px, 10vw, 44px) !important;
+        letter-spacing: -1.5px !important;
+    }
+
+    .beat-meta {
+        margin-bottom: 10px !important;
+    }
+
+    .beat-player {
+        padding: 9px !important;
+    }
+
+    .download-beat-button {
+        min-height: 42px !important;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .beat-container {
+        padding-left: 13px !important;
+        padding-right: 13px !important;
+        gap: 15px !important;
+    }
+
+    .beat-artwork,
+    .beat-artwork img {
+        max-width: 165px !important;
+    }
+
+    .beat-information h1 {
+        font-size: 32px !important;
+    }
+
+    .beat-subtitle {
+        font-size: 9px !important;
+    }
+
+}

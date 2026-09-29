@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>WAVE BEATZ — Admin</title>
+
+    <meta
+        name="description"
+        content="WAVE BEATZ DJ WAVY admin beat management"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(208, 166, 83, 0.10),
+                    transparent 30%
+                ),
+                #080808;
+            color: #f5f5f5;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .topbar {
+            width: 100%;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(8,8,8,0.96);
+        }
+
+        .topbar-inner {
+            width: min(1100px, 92%);
+            min-height: 72px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid #d0a653;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d0a653;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+
+        .brand-text span {
+            display: block;
+            margin-top: 3px;
+            color: #888;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .back-link {
+            padding: 10px 16px;
+            border: 1px solid rgba(208,166,83,0.35);
+            border-radius: 8px;
+            color: #d0a653;
+            font-size: 13px;
+            transition: 0.2s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(208,166,83,0.10);
+            border-color: #d0a653;
+        }
+
+        main {
+            width: min(900px, 92%);
+            margin: 45px auto 80px;
+        }
+
+        .heading {
+            margin-bottom: 28px;
+        }
+
+        .heading .eyebrow {
+            color: #d0a653;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .heading h1 {
+            font-size: clamp(28px, 5vw, 46px);
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .heading p {
+            color: #929292;
+            line-height: 1.6;
+            max-width: 650px;
+            font-size: 14px;
+        }
+
+        .panel {
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.045),
+                rgba(255,255,255,0.018)
+            );
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.30);
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .section-description {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #d8d8d8;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        label span {
+            color: #777;
+            font-weight: 400;
+        }
+
+        input,
+        select {
+            width: 100%;
+            min-height: 48px;
+            border-radius: 9px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: #101010;
+            color: #f5f5f5;
+            padding: 0 14px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #d0a653;
+            box-shadow: 0 0 0 2px rgba(208,166,83,0.08);
+        }
+
+        select {
+            appearance: auto;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        input[type="file"]::file-selector-button {
+            border: 0;
+            border-radius: 7px;
+            background: #202020;
+            color: #ddd;
+            padding: 8px 12px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .hint {
+            color: #666;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .upload-box {
+            border: 1px dashed rgba(208,166,83,0.30);
+            border-radius: 12px;
+            padding: 18px;
+            background: rgba(208,166,83,0.025);
+        }
+
+        .upload-box input {
+            background: #0b0b0b;
+        }
+
+        .actions {
+            margin-top: 28px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .submit-btn {
+            min-height: 50px;
+            padding: 0 25px;
+            border: 0;
+            border-radius: 9px;
+            background: #d0a653;
+            color: #080808;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.08);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.55;
+            cursor: wait;
+            transform: none;
+        }
+
+        .clear-btn {
+            min-height: 50px;
+            padding: 0 20px;
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 9px;
+            background: transparent;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .clear-btn:hover {
+            color: #fff;
+            border-color: rgba(255,255,255,0.20);
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 14px 16px;
+            border-radius: 9px;
+            display: none;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .status.success {
+            display: block;
+            background: rgba(67,160,71,0.10);
+            border: 1px solid rgba(67,160,71,0.30);
+            color: #9bdd9f;
+        }
+
+        .status.error {
+            display: block;
+            background: rgba(220,70,70,0.10);
+            border: 1px solid rgba(220,70,70,0.30);
+            color: #ff9b9b;
+        }
+
+        .status.loading {
+            display: block;
+            background: rgba(208,166,83,0.08);
+            border: 1px solid rgba(208,166,83,0.20);
+            color: #d0a653;
+        }
+
+        .info-box {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 11px;
+            background: #0d0d0d;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            padding-left: 18px;
+            color: #777;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            margin-top: 35px;
+            text-align: center;
+            color: #555;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 650px) {
+            .topbar-inner {
+                min-height: 65px;
+            }
+
+            .brand-mark {
+                width: 38px;
+                height: 38px;
+            }
+
+            .brand-text strong {
+                font-size: 14px;
+            }
+
+            .brand-text span {
+                font-size: 9px;
+            }
+
+            .back-link {
+                padding: 8px 11px;
+                font-size: 11px;
+            }
+
+            main {
+                margin-top: 30px;
+            }
+
+            .panel {
+                padding: 20px 16px;
+                border-radius: 13px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .submit-btn,
+            .clear-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+
+            <div class="brand">
+                <div class="brand-mark">WB</div>
+
+                <div class="brand-text">
+                    <strong>WAVE BEATZ</strong>
+                    <span>DJ WAVY ADMIN</span>
+                </div>
+            </div>
+
+            <a href="/" class="back-link">
+                ← Back to Site
+            </a>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <section class="heading">
+            <div class="eyebrow">DJ WAVY / CONTROL PANEL</div>
+
+            <h1>Add New Beat</h1>
+
+            <p>
+                Upload a new WAVE BEATZ instrumental and add it directly
+                to your beat catalogue.
+            </p>
+        </section>
+
+
+        <section class="panel">
+
+            <h2 class="section-title">
+                Beat Information
+            </h2>
+
+            <p class="section-description">
+                Fill in the details below, then upload your audio file.
+            </p>
+
+
+            <form
+                id="beatForm"
+                enctype="multipart/form-data"
+            >
+
+                <div class="form-grid">
+
+                    <!-- TITLE -->
+                    <div class="field full">
+                        <label for="title">
+                            Beat Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="e.g. Wavy Dimension"
+                            required
+                        >
+                    </div>
+
+
+                    <!-- GENRE -->
+                    <div class="field">
+
+                        <label for="genre">
+                            Genre
+                        </label>
+
+                        <select
+                            id="genre"
+                            name="genre"
+                            required
+                        >
+                            <option value="">Select genre</option>
+                            <option value="TRAP">Trap</option>
+                            <option value="HIP-HOP">Hip-Hop</option>
+                            <option value="AFROBEAT">Afrobeat</option>
+                            <option value="DANCEHALL">Dancehall</option>
+                            <option value="R&B">R&B</option>
+                            <option value="DRILL">Drill</option>
+                            <option value="AMAPIANO">Amapiano</option>
+                            <option value="POP">Pop</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- BPM -->
+                    <div class="field">
+
+                        <label for="bpm">
+                            BPM
+                        </label>
+
+                        <input
+                            type="number"
+                            id="bpm"
+                            name="bpm"
+                            min="1"
+                            max="300"
+                            placeholder="e.g. 140"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- MOOD -->
+                    <div class="field full">
+
+                        <label for="mood">
+                            Mood
+                            <span>(optional)</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="mood"
+                            name="mood"
+                            placeholder="e.g. Dark, Energetic, Chill, Late Night"
+                        >
+
+                    </div>
+
+
+                    <!-- AUDIO -->
+                    <div class="field full">
+
+                        <label for="audio">
+                            Beat Audio
+                        </label>
+
+                        <div class="upload-box">
+
+                            <input
+                                type="file"
+                                id="audio"
+                                name="audio"
+                                accept=".mp3,.wav,.m4a,.ogg,audio/*"
+                                required
+                            >
+
+                            <div class="hint">
+                                Supported formats: MP3, WAV, M4A, OGG
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ARTWORK -->
+                    <div class="field full">
+
+                        <label for="artwork">
+                            Cover Artwork
+                            <span>(optional)</span>
+                        </label>
+
+                        <div class="upload-box">
+
+                            <input
+                                type="file"
+                                id="artwork"
+                                name="artwork"
+                                accept=".jpg,.jpeg,.png,.webp,image/*"
+                            >
+
+                            <div class="hint">
+                                Recommended: square JPG or PNG artwork.
+                                You can add artwork later if you don't have it yet.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                        id="submitBtn"
+                    >
+                        + Add Beat
+                    </button>
+
+                    <button
+                        type="button"
+                        class="clear-btn"
+                        id="clearBtn"
+                    >
+                        Clear Form
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="status"
+                    class="status"
+                    role="status"
+                ></div>
+
+            </form>
+
+
+            <div class="info-box">
+
+                <h3>Upload notes</h3>
+
+                <ul>
+                    <li>Beat title should be unique and easy to recognize.</li>
+                    <li>Use the actual BPM of your instrumental.</li>
+                    <li>Artwork is optional for now.</li>
+                    <li>The audio file will be stored inside WAVE BEATZ.</li>
+                    <li>After a successful upload, the beat is added to the catalogue.</li>
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <div class="footer">
+            WAVE BEATZ © DJ WAVY
+        </div>
+
+    </main>
+
+
+    <script>
+
+        const form = document.getElementById("beatForm");
+        const statusBox = document.getElementById("status");
+        const submitBtn = document.getElementById("submitBtn");
+        const clearBtn = document.getElementById("clearBtn");
+
+
+        function showStatus(message, type) {
+
+            statusBox.textContent = message;
+
+            statusBox.className = "status " + type;
+        }
+
+
+        function clearStatus() {
+
+            statusBox.textContent = "";
+
+            statusBox.className = "status";
+        }
+
+
+        clearBtn.addEventListener("click", function () {
+
+            form.reset();
+
+            clearStatus();
+
+        });
+
+
+        form.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            clearStatus();
+
+            const audioFile =
+                document.getElementById("audio").files[0];
+
+            if (!audioFile) {
+
+                showStatus(
+                    "Please select an audio file.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const formData = new FormData(form);
+
+
+            submitBtn.disabled = true;
+
+            submitBtn.textContent = "Uploading...";
+
+
+            showStatus(
+                "Uploading beat to WAVE BEATZ...",
+                "loading"
+            );
+
+
+            try {
+
+                const response = await fetch(
+                    "/api/add-beat",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+                let result;
+
+                try {
+
+                    result = await response.json();
+
+                } catch (jsonError) {
+
+                    throw new Error(
+                        "The server returned an invalid response."
+                    );
+
+                }
+
+
+                if (!response.ok || !result.success) {
+
+                    throw new Error(
+                        result.error ||
+                        "The beat could not be uploaded."
+                    );
+
+                }
+
+
+                showStatus(
+                    "✓ Beat added successfully: " +
+                    result.title,
+                    "success"
+                );
+
+
+                form.reset();
+
+
+            } catch (error) {
+
+                showStatus(
+                    "Upload failed: " + error.message,
+                    "error"
+                );
+
+            } finally {
+
+                submitBtn.disabled = false;
+
+                submitBtn.textContent = "+ Add Beat";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

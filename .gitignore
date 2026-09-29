@@ -1,0 +1,49 @@
+# Secrets
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local databases
+database/*.db
+
+# Local logs
+*.log
+seo-test.log
+
+# Development backups / old versions
+backups/
+app-before-*.py
+app-before-*.html
+app-stage*.py
+ecocash_routes-before-*.py
+index-v1-backup.html
+script-v1-backup.js
+style-v1-backup.css
+seo_routes-before-*.py
+seo_routes-before-*.pj
+
+# Old development versions
+css/*-before-*.css
+css/*-stage*.css
+
+js/*-before-*.js
+js/*-stage*.js
+js/*.save
+
+static/css/*-before-*.css
+static/css/*-stage*.css
+
+static/js/*-before-*.js
+static/js/*-stage*.js
+static/js/*.save
+
+templates/*-before-*.html
+templates/*-stage*.html
+templates/*-backup*.html
+templates/*-before-*.py
+
+# Old development assets
+static/audio/gokuko-fake-love.mp3
+static/images/gokuko-fake-love.jpg

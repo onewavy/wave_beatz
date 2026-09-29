@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="WAVE BEATZ by DJ WAVY — premium beats, instrumentals and music for artists.">
+
+    <meta name="keywords"
+          content="DJ WAVY, WAVE BEATZ, beats, instrumentals, hip hop beats, trap beats, afrobeat">
+
+    <meta name="author"
+          content="DJ WAVY">
+
+    <meta property="og:title"
+          content="WAVE BEATZ — DJ WAVY">
+
+    <meta property="og:description"
+          content="Premium beats and instrumentals by DJ WAVY.">
+
+    <meta property="og:type"
+          content="website">
+
+    <title>WAVE BEATZ — DJ WAVY</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        WAVE<span>BEATZ</span>
+    </a>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#beats">Beats</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</header>
+
+
+<main>
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <p class="eyebrow">DJ WAVY PRESENTS</p>
+
+        <h1>
+            MAKE YOUR
+            <span>WAVE.</span>
+        </h1>
+
+        <p class="hero-text">
+            Premium beats and instrumentals for artists
+            who are ready to make noise.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#beats" class="btn primary">
+                EXPLORE BEATS
+            </a>
+
+            <a href="#about" class="btn secondary">
+                ABOUT DJ WAVY
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-art">
+
+        <div class="vinyl">
+            <div class="vinyl-center">
+                W
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="beats" class="beats-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p class="eyebrow">THE CATALOGUE</p>
+
+            <h2>Latest Beats</h2>
+        </div>
+
+        <div class="search-box">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search beats..."
+                onkeyup="searchBeats()">
+
+        </div>
+
+    </div>
+
+
+    <div class="categories">
+
+        <button onclick="filterBeats('all')">
+            ALL
+        </button>
+
+        <button onclick="filterBeats('trap')">
+            TRAP
+        </button>
+
+        <button onclick="filterBeats('hiphop')">
+            HIP-HOP
+        </button>
+
+        <button onclick="filterBeats('afro')">
+            AFROBEAT
+        </button>
+
+        <button onclick="filterBeats('rnb')">
+            R&B
+        </button>
+
+    </div>
+
+
+    <div class="beat-grid" id="beatGrid">
+
+
+        <!-- BEAT 1 -->
+
+        <article class="beat-card"
+                 data-name="Midnight Wave"
+                 data-genre="trap">
+
+            <div class="cover">
+
+                <div class="cover-text">
+                    WAVE<br>01
+                </div>
+
+                <button class="play-btn"
+                        onclick="playBeat('Midnight Wave', 'audio/midnight-wave.mp3')">
+                    ▶
+                </button>
+
+            </div>
+
+            <div class="beat-info">
+
+                <div>
+
+                    <h3>Midnight Wave</h3>
+
+                    <p>TRAP • 140 BPM</p>
+
+                </div>
+
+                <button class="download-btn"
+                        onclick="downloadBeat('audio/midnight-wave.mp3')">
+                    ↓
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- BEAT 2 -->
+
+        <article class="beat-card"
+                 data-name="African Sunset"
+                 data-genre="afro">
+
+            <div class="cover cover-two">
+
+                <div class="cover-text">
+                    WAVE<br>02
+                </div>
+
+                <button class="play-btn"
+                        onclick="playBeat('African Sunset', 'audio/african-sunset.mp3')">
+                    ▶
+                </button>
+
+            </div>
+
+            <div class="beat-info">
+
+                <div>
+
+                    <h3>African Sunset</h3>
+
+                    <p>AFROBEAT • 105 BPM</p>
+
+                </div>
+
+                <button class="download-btn"
+                        onclick="downloadBeat('audio/african-sunset.mp3')">
+                    ↓
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- BEAT 3 -->
+
+        <article class="beat-card"
+                 data-name="City Lights"
+                 data-genre="hiphop">
+
+            <div class="cover cover-three">
+
+                <div class="cover-text">
+                    WAVE<br>03
+                </div>
+
+                <button class="play-btn"
+                        onclick="playBeat('City Lights', 'audio/city-lights.mp3')">
+                    ▶
+                </button>
+
+            </div>
+
+            <div class="beat-info">
+
+                <div>
+
+                    <h3>City Lights</h3>
+
+                    <p>HIP-HOP • 92 BPM</p>
+
+                </div>
+
+                <button class="download-btn"
+                        onclick="downloadBeat('audio/city-lights.mp3')">
+                    ↓
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- BEAT 4 -->
+
+        <article class="beat-card"
+                 data-name="After Hours"
+                 data-genre="rnb">
+
+            <div class="cover cover-four">
+
+                <div class="cover-text">
+                    WAVE<br>04
+                </div>
+
+                <button class="play-btn"
+                        onclick="playBeat('After Hours', 'audio/after-hours.mp3')">
+                    ▶
+                </button>
+
+            </div>
+
+            <div class="beat-info">
+
+                <div>
+
+                    <h3>After Hours</h3>
+
+                    <p>R&B • 88 BPM</p>
+
+                </div>
+
+                <button class="download-btn"
+                        onclick="downloadBeat('audio/after-hours.mp3')">
+                    ↓
+                </button>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<section id="about" class="about">
+
+    <p class="eyebrow">THE PRODUCER</p>
+
+    <h2>DJ WAVY</h2>
+
+    <p>
+        WAVE BEATZ is a home for original instrumentals
+        created by DJ WAVY. From hard-hitting drums to
+        melodic waves, every beat is built for artists
+        looking for their next sound.
+    </p>
+
+</section>
+
+
+<section id="contact" class="contact">
+
+    <p class="eyebrow">GET IN TOUCH</p>
+
+    <h2>Ready to make a wave?</h2>
+
+    <p>
+        For beat licensing, collaborations and enquiries,
+        get in touch with DJ WAVY.
+    </p>
+
+    <a href="mailto:contact@wavebeatz.com"
+       class="btn primary">
+        CONTACT DJ WAVY
+    </a>
+
+</section>
+
+</main>
+
+
+<!-- MUSIC PLAYER -->
+
+<div class="player" id="player">
+
+    <div class="player-info">
+
+        <div class="mini-cover">
+            W
+        </div>
+
+        <div>
+
+            <strong id="playerTitle">
+                WAVE BEATZ
+            </strong>
+
+            <small>
+                DJ WAVY
+            </small>
+
+        </div>
+
+    </div>
+
+    <audio id="audioPlayer"
+           controls>
+    </audio>
+
+</div>
+
+
+<footer>
+
+    <div class="logo">
+        WAVE<span>BEATZ</span>
+    </div>
+
+    <p>
+        © 2026 WAVE BEATZ • DJ WAVY
+    </p>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
