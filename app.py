@@ -124,6 +124,10 @@ def init_db():
 
     conn = get_db()
 
+    # --------------------------------------
+    # BEATS
+    # --------------------------------------
+
     conn.execute("""
         CREATE TABLE IF NOT EXISTS beats (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -178,6 +182,27 @@ def init_db():
             email TEXT NOT NULL UNIQUE,
             phone TEXT,
             password_hash TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+
+    # --------------------------------------
+    # STAGE 7 — ORDERS
+    # --------------------------------------
+
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS orders (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            user_email TEXT,
+            beat_id INTEGER,
+            beat_title TEXT,
+            license_type TEXT,
+            amount REAL,
+            currency TEXT DEFAULT 'USD',
+            payment_method TEXT,
+            payment_status TEXT,
+            transaction_id TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
