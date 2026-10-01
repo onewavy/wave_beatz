@@ -193,17 +193,24 @@ def init_db():
     conn.execute("""
         CREATE TABLE IF NOT EXISTS orders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            user_email TEXT,
             beat_id INTEGER,
-            beat_title TEXT,
             license_type TEXT,
+            artist_name TEXT,
+            buyer_email TEXT,
+            buyer_phone TEXT,
+            buyer_message TEXT,
             amount REAL,
             currency TEXT DEFAULT 'USD',
-            payment_method TEXT,
+            client_correlator TEXT,
+            reference_code TEXT,
             payment_status TEXT,
-            transaction_id TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            ecocash_status TEXT,
+            ecocash_transaction_id TEXT,
+            ecocash_server_reference TEXT,
+            download_token TEXT,
+            download_expires_at TIMESTAMP,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            paid_at TIMESTAMP
         )
     """)
 
