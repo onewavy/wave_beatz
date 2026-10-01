@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, jsonify, redirect, send_from_directory
+from flask import Flask, render_template, request, jsonify, redirect, send_from_directory, session
 from dotenv import load_dotenv
 import sqlite3
 import os
 import re
 import base64
 import requests
+import hmac
 from werkzeug.utils import secure_filename
 
 # ==========================================
@@ -593,15 +594,90 @@ def rnb():
 
 
 # ==========================================
-# ADMIN PAGE
+# ADMIN AUTHENTICATION
 # ==========================================
 
-@app.route("/admin")
+@app.route("/admin", methods=["GET"])
 def admin():
+
+    # Admin dashboard is protected separately
+    # from normal customer accounts.
+    if not session.get("admin_authenticated"):
+        return redirect("/admin/login")
 
     return render_template(
         "admin.html"
     )
+
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+
+    if session.get("admin_authenticated"):
+        return redirect("/admin")
+
+    error = None
+
+    if request.method == "POST":
+
+        username = request.form.get(
+            "username",
+            ""
+        ).strip()
+
+        password = request.form.get(
+            "password",
+            ""
+        )
+
+        admin_username = os.getenv(
+            "ADMIN_USERNAME",
+            ""
+        )
+
+        admin_password = os.getenv(
+            "ADMIN_PASSWORD",
+            ""
+        )
+
+        username_ok = hmac.compare_digest(
+            username,
+            admin_username
+        )
+
+        password_ok = hmac.compare_digest(
+            password,
+            admin_password
+        )
+
+        if (
+            admin_username
+            and admin_password
+            and username_ok
+            and password_ok
+        ):
+
+            session["admin_authenticated"] = True
+
+            return redirect("/admin")
+
+        error = "Invalid admin username or password."
+
+    return render_template(
+        "admin_login.html",
+        error=error
+    )
+
+
+@app.route("/admin/logout")
+def admin_logout():
+
+    session.pop(
+        "admin_authenticated",
+        None
+    )
+
+    return redirect("/admin/login")
 
 
 # ==========================================
